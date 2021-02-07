@@ -15,13 +15,13 @@
     <li class="nav-item">
      <router-link class="nav-link" to="/about">About</router-link>
     </li>
-    
-   <form class="form-inline my-2 my-lg-0">
      <router-link  class="btn btn-success" to="/login">Sign In</router-link> 
-  </form>
   </ul>
+
 </nav>
+ <router-view />
 </div>
+
   
 </template>
 

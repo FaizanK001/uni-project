@@ -15,7 +15,13 @@
     <li class="nav-item">
      <router-link class="nav-link" to="/about">About</router-link>
     </li>
+   <li>
      <router-link  class="btn btn-success" to="/login">Sign In</router-link> 
+   </li>
+    
+  <li>
+      <router-link class="btn btn-success" to="/register">Register</router-link>
+     </li>
   </ul>
 
 </nav>
@@ -35,5 +41,7 @@ export default {
 </script>
 
 <style>
-
+.btn{
+margin-left:10px;
+}
 </style>

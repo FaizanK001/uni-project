@@ -20,14 +20,9 @@
                   <input type="password" v-model="password"  id="inputPassword" class="form-control" placeholder="Password" required>
                   <label for="inputPassword">Password</label>
                 </div>
-
-                <div class="custom-control custom-checkbox mb-3">
-                  <input type="checkbox" class="custom-control-input" id="customCheck1">
-                  <label class="custom-control-label" for="customCheck1">Remember password</label>
-                </div>
-                <el-form-item v-if="error">
-                <el-button plain disabled icon="el-icon-error">{{error}}</el-button>
-                </el-form-item>
+                
+                <div v-if="errorFirebase" class="errorFirebase">{{errorFirebase}}</div>
+               
 
                 <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" @click="login">Sign in</button>
 
@@ -47,14 +42,35 @@
 
 <script>
 import {ref} from "vue";
-import {firebase}
+import {firebaseAuthentication} from "../firebase/database";
+import {useRouter} from "vue-router";
 export default {
-data: () =>{
-  return{
-        
+  name: "login",
+  emits: ["login-clicked"],
+ setup() {
+  const email = ref("");
+  const password = ref("");
+  const errorFirebase = ref("");
+
+  const router =useRouter();
+
+  function login(){
+    const info = {
+      email: email.value,
+      password: password.value,
+    };
+    firebaseAuthentication.signInWithEmailAndPassword(info.email,info.password)
+    .then(()=>{
+      router.push("/"); 
+    }, error =>{
+      errorFirebase.value =error.message;
+    });
   }
-}
-}
+
+return{email, password, errorFirebase, login};
+  
+},
+};
 </script>
 
 <style>

@@ -15,7 +15,7 @@
 
         <!-- Registeration Form -->
         <div class="col-md-7 col-lg-6 ml-auto">
-            <form action="#">
+            <form @submit.prevent>
                 <div class="row">
 
                     <!-- First Name -->
@@ -25,7 +25,7 @@
                                 <i class="fa fa-user text-muted"></i>
                             </span>
                         </div>
-                        <input id="firstName" type="text" name="firstname" placeholder="First Name" class="form-control bg-white border-left-0 border-md">
+                        <input id="firstName" type="text" v-model="firstName" name="firstname" placeholder="First Name" class="form-control bg-white border-left-0 border-md">
                     </div>
 
                     <!-- Last Name -->
@@ -35,7 +35,7 @@
                                 <i class="fa fa-user text-muted"></i>
                             </span>
                         </div>
-                        <input id="lastName" type="text" name="lastname" placeholder="Last Name" class="form-control bg-white border-left-0 border-md">
+                        <input id="lastName" type="text" v-model="lastName" name="lastname" placeholder="Last Name" class="form-control bg-white border-left-0 border-md">
                     </div>
 
                     <!-- Email Address -->
@@ -45,7 +45,7 @@
                                 <i class="fa fa-envelope text-muted"></i>
                             </span>
                         </div>
-                        <input id="email" type="email" name="email" placeholder="Email Address" class="form-control bg-white border-left-0 border-md">
+                        <input id="email" type="email" name="email" v-model="email" placeholder="Email Address" class="form-control bg-white border-left-0 border-md">
                     </div>
 
 
@@ -56,7 +56,7 @@
                                 <i class="fa fa-lock text-muted"></i>
                             </span>
                         </div>
-                        <input id="password" type="password" name="password" placeholder="Password" class="form-control bg-white border-left-0 border-md">
+                        <input id="password" type="password" v-model="password" name="password" placeholder="Password" class="form-control bg-white border-left-0 border-md">
                     </div>
 
                     <!-- Password Confirmation -->
@@ -66,15 +66,19 @@
                                 <i class="fa fa-lock text-muted"></i>
                             </span>
                         </div>
-                        <input id="passwordConfirmation" type="text" name="passwordConfirmation" placeholder="Confirm Password" class="form-control bg-white border-left-0 border-md">
+                        <input id="passwordConfirmation" type="text" v-model="passwordConfirmation" name="passwordConfirmation" placeholder="Confirm Password" class="form-control bg-white border-left-0 border-md">
                     </div>
 
+                    <div v-if="errorRegistration" class="errorRegistration">{{errorRegistration}}</div>
+
+                    <button class="btn btn-primary btn-block py-2" @click="register">Register</button>
+
                     <!-- Submit Button -->
-                    <div class="form-group col-lg-12 mx-auto mb-0">
+                   <!-- <div class="form-group col-lg-12 mx-auto mb-0">
                         <a href="#" class="btn btn-primary btn-block py-2">
                             <span class="font-weight-bold">Create your account</span>
                         </a>
-                    </div>
+                    </div> -->
 
                     <!-- Divider Text -->
                     <div class="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
@@ -111,10 +115,58 @@
 </template>
 
 <script>
-
+import {ref, watch} from "vue";
+import {useRouter} from "vue-router";
+import {firebaseAuthentication} from "../firebase/database";
 export default {
+    name: "register",
+    emits: ["register-clicked"],
 
-}
+    setup() {
+        const firstName = ref("");
+        const lastName = ref("");
+        const email = ref("");
+        const password= ref("");
+        const passwordConfirmation = ref("");
+        const errorRegistration = ref("");
+
+        watch(passwordConfirmation, ()=>{
+            if(password.value !== "" && passwordConfirmation.value!== "" && password.value !== passwordConfirmation.value){
+                errorRegistration.value ="Passwords do not match!";
+        }else {
+            errorRegistration.value=null;
+        }
+        });
+        const router = useRouter();
+        function register(){
+            const info = {
+                email: email.value,
+                password: password.value
+            };
+            if (!errorRegistration.value){
+                firebaseAuthentication.createUserWithEmailAndPassword(info.email,info.password)
+                .then(()=>{
+                    router.replace("login");
+                },
+                (error) => {
+                    errorRegistration.value = error.message;
+                }
+                );
+            }
+        }
+        return{
+            firstName,
+            lastName,
+            email,
+            password,
+            passwordConfirmation,
+            errorRegistration,
+            register
+
+        };
+    },
+
+};
 </script>
 
 <style>

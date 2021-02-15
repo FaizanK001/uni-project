@@ -10,22 +10,22 @@
           <div class="row">
             <div class="col-md-9 col-lg-8 mx-auto">
               <h3 class="login-heading mb-4">Welcome back!</h3>
-              <form>
+              <form @submit.prevent>
                 <div class="form-label-group">
-                  <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                  <input type="email" v-model="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
                   <label for="inputEmail">Email address</label>
                 </div>
 
                 <div class="form-label-group">
-                  <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                  <input type="password" v-model="password"  id="inputPassword" class="form-control" placeholder="Password" required>
                   <label for="inputPassword">Password</label>
                 </div>
+                
+                <div v-if="errorFirebase" class="errorFirebase">{{errorFirebase}}</div>
+               
 
-                <div class="custom-control custom-checkbox mb-3">
-                  <input type="checkbox" class="custom-control-input" id="customCheck1">
-                  <label class="custom-control-label" for="customCheck1">Remember password</label>
-                </div>
-                <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Sign in</button>
+                <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" @click="login">Sign in</button>
+
                 <div class="text-center">
                   <a class="small" href="#">Forgot password?</a></div>
               </form>
@@ -41,16 +41,39 @@
 </template>
 
 <script>
+import {ref} from "vue";
+import {firebaseAuthentication} from "../firebase/database";
+import {useRouter} from "vue-router";
 export default {
-data: () =>{
-  return{
-        
+  name: "login",
+  emits: ["login-clicked"],
+ setup() {
+  const email = ref("");
+  const password = ref("");
+  const errorFirebase = ref("");
+
+  const router =useRouter();
+
+  function login(){
+    const info = {
+      email: email.value,
+      password: password.value,
+    };
+    firebaseAuthentication.signInWithEmailAndPassword(info.email,info.password)
+    .then(()=>{
+      router.push("/"); 
+    }, error =>{
+      errorFirebase.value =error.message;
+    });
   }
-}
-}
+
+return{email, password, errorFirebase, login};
+  
+},
+};
 </script>
 
-<style>
+<style scoped>
 :root {
   --input-padding-x: 1.5rem;
   --input-padding-y: 0.75rem;

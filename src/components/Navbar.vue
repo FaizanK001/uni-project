@@ -13,6 +13,9 @@
       <router-link class="nav-link" to="/services">Services</router-link>
     </li>
     <li class="nav-item">
+     <router-link class="nav-link" to="/Help">Help</router-link>
+    </li>
+    <li class="nav-item">
      <router-link class="nav-link" to="/about">About</router-link>
     </li>
    <li>

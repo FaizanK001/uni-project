@@ -8,13 +8,13 @@
     <div class="display-box justify-content-center">
       <!-- User profile display -->
       <div v-if="updateCheck === false">
-        <profile-details></profile-details>
+        <account-details></account-details>
         <button type="button" class="btn btn-primary" @click="updateProfile()">Update details</button>
       </div>
 
       <!-- Profile update display -->
       <div v-if="updateCheck === true">
-        <profile-update></profile-update>
+        <account-update></account-update>
         <button type="button" class="btn btn-primary" @click="updateProfile()">Cancel</button>
         <button type="button" class="btn btn-primary" @click="updateProfile()">Save details</button>
       </div>
@@ -25,12 +25,12 @@
 <script>
 // @ is an alias to /src
 import {ref} from "vue";
-import ProfileDetails from '../components/ProfileDetails.vue';
-import ProfileUpdate from '../components/ProfileUpdate.vue'
+import AccountDetails from '../components/AccountDetails.vue';
+import AccountUpdate from '../components/AccountUpdate.vue'
 
 export default {
   name: "Account",
-  components: { ProfileDetails, ProfileUpdate },
+  components: { AccountDetails, AccountUpdate },
   
   setup() {
     const firstname = ref("Hubert");

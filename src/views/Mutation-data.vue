@@ -1,7 +1,7 @@
 <template>
 
 <div>
-   <h1> services page hbhj </h1> 
+   <h1> Services</h1> 
 </div>
 
 </template>

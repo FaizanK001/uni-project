@@ -48,7 +48,6 @@
                         <input id="email" type="email" name="email" v-model="email" placeholder="Email Address" class="form-control bg-white border-left-0 border-md">
                     </div>
 
-
                     <!-- Password -->
                     <div class="input-group col-lg-6 mb-4">
                         <div class="input-group-prepend">
@@ -66,15 +65,16 @@
                                 <i class="fa fa-lock text-muted"></i>
                             </span>
                         </div>
-                        <input id="passwordConfirmation" type="text" v-model="passwordConfirmation" name="passwordConfirmation" placeholder="Confirm Password" class="form-control bg-white border-left-0 border-md">
+                        <input id="passwordConfirmation" type="password" v-model="passwordConfirmation" name="passwordConfirmation" placeholder="Confirm Password" class="form-control bg-white border-left-0 border-md">
                     </div>
 
                     <div v-if="errorRegistration" class="errorRegistration">{{errorRegistration}}</div>
-
+                    
+                    <!-- Submit Button -->
                     <button class="btn btn-primary btn-block py-2" @click="register">Register</button>
 
-                    <!-- Submit Button -->
-                   <!-- <div class="form-group col-lg-12 mx-auto mb-0">
+                    <!-- Submit Button
+                   <div class="form-group col-lg-12 mx-auto mb-0">
                         <a href="#" class="btn btn-primary btn-block py-2">
                             <span class="font-weight-bold">Create your account</span>
                         </a>

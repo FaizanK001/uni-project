@@ -16,8 +16,9 @@
     <li class="nav-item">
       <router-link class="nav-link" to="/help">Help</router-link>
     </li>
-    
-      
+    <li class="nav-item">
+      <router-link class="nav-link" to="/account">Account</router-link>
+    </li>
 
     <li>
       <router-link  class="btn btn-success" to="/login">Sign In</router-link> 
@@ -36,7 +37,6 @@
 
 <script>
 export default {
-   
 
 }
 

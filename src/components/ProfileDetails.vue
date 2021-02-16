@@ -14,6 +14,12 @@
 export default {
     name: "Profile",
 
+    props: [
+        "firstname",
+        "lastname",
+        "email"
+    ],
+
     setup () {
         return {};
     }

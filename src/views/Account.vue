@@ -1,24 +1,31 @@
 <template>
-  <div class="account">
+  <div class="account d-flex flex-wrap justify-content-start">
 
-    <div class="d-flex align-items-center justify-content-center welcome-box">
+    <div class="d-flex w-100 align-items-center justify-content-center welcome-box">
       <h1 class="welcome-text">Welcome {{ firstname }} {{ lastname }}! </h1>
     </div>
+    
+    
+      <div class="details-display-box">
+        <!-- User profile display -->
+        <div v-if="updateCheck === false">
+          <account-details></account-details>
+          <button type="button" class="btn btn-primary" @click="updateProfile()">Update details</button>
+        </div>
 
-    <div class="display-box justify-content-center">
-      <!-- User profile display -->
-      <div v-if="updateCheck === false">
-        <account-details></account-details>
-        <button type="button" class="btn btn-primary" @click="updateProfile()">Update details</button>
+        <!-- Profile update display -->
+        <div v-if="updateCheck === true">
+          <account-update></account-update>
+          <button type="button" class="btn btn-primary" @click="updateProfile()">Cancel</button>
+          <button type="button" class="btn btn-primary" @click="updateProfile()">Save details</button>
+        </div>
       </div>
 
-      <!-- Profile update display -->
-      <div v-if="updateCheck === true">
-        <account-update></account-update>
-        <button type="button" class="btn btn-primary" @click="updateProfile()">Cancel</button>
-        <button type="button" class="btn btn-primary" @click="updateProfile()">Save details</button>
+      <!-- Data Section -->
+      <div class="data-display-box">
+        <p>Data</p>
       </div>
-    </div>
+
   </div>
 </template>
 
@@ -58,10 +65,14 @@ export default {
   font-size: 60px;
 }
 
-.display-box {
-  margin-top: 3%;
-  margin-left: 10%;
-  margin-right: 10%;
+.details-display-box {
+  padding: 15px;
+  width: 30%;
+}
+
+.data-display-box {
+  padding: 15px;
+  width: 70%;
 }
 
 </style>

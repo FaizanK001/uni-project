@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
-import Mutation_data from '../views/Mutation-data.vue'
+import Graphs from '../views/Graphs.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import Account from '../views/Account.vue'
@@ -20,9 +20,9 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/Help.vue')
   },
   {
-    path: '/mutation-data',
-    name: 'Mutation-data',
-    component: Mutation_data
+    path: '/graphs',
+    name: 'Graphs',
+    component: Graphs
   },
   {
     path: '/login',

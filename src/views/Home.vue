@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div id="home">
 
     <h1>this is home page</h1>
   </div>
@@ -16,3 +16,11 @@ export default {
   }
 }
 </script>
+
+<style>
+
+#home {
+  min-height: 100vh;
+}
+
+</style>

@@ -74,6 +74,7 @@ return{email, password, errorFirebase, login};
 </script>
 
 <style scoped>
+
 :root {
   --input-padding-x: 1.5rem;
   --input-padding-y: 0.75rem;

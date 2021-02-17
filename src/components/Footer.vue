@@ -1,8 +1,10 @@
 <template>
+<div>
 <br>
   <div class="Footer"> 
       <h1>&copy; Project -Group 3 </h1>
   </div>
+</div>
 </template>
 
 <script>

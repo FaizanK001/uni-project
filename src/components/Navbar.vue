@@ -1,6 +1,6 @@
 <template>
 <div>
-  <nav class="relative flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-black mb-3">
+  <nav class="relative flex flex-wrap items-center nav-link navbar-expand-lg bg-black ">
     <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
       <div class="w-full relative flex justify-between lg:w-auto  px-4 lg:static lg:block lg:justify-start">
         <a class="logo text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-no-wrap uppercase text-white" >
@@ -28,8 +28,6 @@
   <li>
       <router-link class="nav-link" to="/register">Register</router-link>
      </li>
-<a>dadasd</a>
-         
         </ul>
       </div>
     </div>

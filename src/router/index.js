@@ -4,7 +4,6 @@ import Graphs from '../views/Graphs.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import Account from '../views/Account.vue'
-import Help from '../views/Help.vue'
 
 const routes = [
   {

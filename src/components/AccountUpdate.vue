@@ -39,7 +39,9 @@ export default {
 </script>
 
 <style>
+
 label {
     color: black;
 }
+
 </style>

@@ -6,7 +6,7 @@
     </div>
     
     
-      <div class="details-display-box card">
+      <div id="details-display-box" class="card">
         <!-- User profile display -->
         <div v-if="updateCheck === false">
           <account-details></account-details>
@@ -22,7 +22,7 @@
       </div>
 
       <!-- Data Section -->
-      <div class="data-display-box card">
+      <div id="data-display-box" class="card">
         <p>Data</p>
       </div>
 
@@ -56,39 +56,37 @@ export default {
 
 <style>
 
-.card {
-  margin: 0.5%;
-}
-
 .welcome-box {
   height: 15vh;
   background-color: #c4c4c4;
   color: black;
 }
 
+.btn {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
 .welcome-text {
   font-size: 60px;
 }
 
-.details-display-box {
+#details-display-box {
   padding: 15px;
   width: 30%;
   min-height: 100vh;
+  margin: 0.5%;
 }
 
-.data-display-box {
+#data-display-box {
   padding: 15px;
   width: 68%;
   min-height: 100vh;
+  margin: 0.5%;
 }
 
 #account {
   min-height: 100vh;
-}
-
-.btn {
-  margin-left: 10px;
-  margin-right: 10px;
 }
 
 </style>

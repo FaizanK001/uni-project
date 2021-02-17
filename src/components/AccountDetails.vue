@@ -44,7 +44,7 @@ export default {
 
 <style>
 
-.field{
+.field {
     padding: 10px;
     margin-bottom: 15px;
     text-align: left;

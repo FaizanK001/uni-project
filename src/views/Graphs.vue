@@ -1,7 +1,7 @@
 <template>
 
-<div>
-   <h1> services page hbhj </h1> 
+<div id="graphs">
+   <h1> Services</h1> 
 </div>
 
 </template>
@@ -14,4 +14,7 @@ export default {
 
 <style>
 
+#graphs{
+   min-height: 100vh;
+}
 </style>

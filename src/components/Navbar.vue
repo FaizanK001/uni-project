@@ -16,10 +16,10 @@
        <router-link class="nav-link" to="/">Home</router-link>
     </li>
     <li class="nav-item">
-      <router-link class="nav-link" to="/services">Services</router-link>
+      <router-link class="nav-link" to="/help">Help</router-link>
     </li>
     <li class="nav-item">
-     <router-link class="nav-link" to="/about">About</router-link>
+      <router-link class="nav-link" to="/account">Account</router-link>
     </li>
    <li>
      <router-link  class="nav-link" to="/login">Sign In</router-link> 

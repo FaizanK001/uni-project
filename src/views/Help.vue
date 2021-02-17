@@ -1,5 +1,5 @@
 <template>
-  <div class="Help">
+  <div id="help">
 
     <h3>How Can We Help </h3>
 
@@ -46,7 +46,12 @@ export default {
 </script>
 
 <style scoped>
-.Help h3 {
+
+#help {
+  min-height: 100vh;
+}
+
+h3 {
     padding-top: 30px;
     font-size: 33px;
     padding-bottom: 25px;
@@ -54,25 +59,25 @@ export default {
     font-weight: bold;
 }
 
-.Help h2 {
+h2 {
     text-align:left;
     margin-left: 230px;
     font-size: 27px;
     color:red;
 }
 
-.Help p {
+p {
     text-align:left;
     margin-left: 270px;
     font-size: 17px;
     padding-right:270px;
 }
 
-.Help ul{
+ul{
     text-align:left;
     margin-left: 250px;
     font-size: 17px;
 }
 
-  </style>
+</style>
 

@@ -33,17 +33,26 @@
 // @ is an alias to /src
 import {ref} from "vue";
 import AccountDetails from '../components/AccountDetails.vue';
-import AccountUpdate from '../components/AccountUpdate.vue'
+import AccountUpdate from '../components/AccountUpdate.vue';
+import { firebaseFireStore } from '../firebase/database.js';
 
 export default {
   name: "Account",
   components: { AccountDetails, AccountUpdate },
   
   setup() {
-    const firstname = ref("Hubert");
+    const firstname = ref(null);
     const lastname = ref("Antczak");
     const email = ref("hubant@gmail.com");
     const updateCheck = ref(false);
+
+    firebaseFireStore
+      .collection("users")
+      .doc("5YzGaye9mXxBarCec3j9")
+      .get()
+      .then((snapshot) => {
+        firstname.value = snapshot.data().firstName;
+      })
     
     function updateProfile() {
       updateCheck.value = !updateCheck.value;

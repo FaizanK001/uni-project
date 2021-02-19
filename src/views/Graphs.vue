@@ -1,10 +1,9 @@
 <template>
-<div class="lineChart">
-    <h3>Line Chart Example</h3>
-  <div>
+<div id="Chart">
+    <h3>Chart Example</h3>
     <line-chart class="center"></line-chart>
-  </div>
-  </div>
+</div>
+
 </template>
 
 <script>
@@ -19,12 +18,19 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
 .center {
   display: flex;
   justify-content: center;
-  margin-bottom: 154px;
-  margin-top: 100px;
+  margin-bottom: 160px;
+  margin-top: 20px;
 }
+#Chart h3 {
+    padding-top: 30px;
+    font-size: 30px;
+    padding-bottom: 25px;
+    Color:rgb(243, 24, 24);
+    font-weight: bold;
+}
+
 </style>

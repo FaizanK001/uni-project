@@ -63,12 +63,12 @@ export default {
 
 .logo{
    position:relative; 
-   right:300px; 
+   right:150px; 
    top:2px;
 }
 .nav{
    position:relative; 
-   left:300px; 
+   left:150px; 
    top:2px;
 }
 

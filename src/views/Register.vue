@@ -67,6 +67,7 @@
                             <input id="passwordConfirmation" type="password" v-model="passwordConfirmation" name="passwordConfirmation" placeholder="Confirm Password" class="form-control bg-white border-left-0 border-md">
                         </div>
 
+
                         <div v-if="errorRegistration" class="errorRegistration">{{errorRegistration}}</div>
                         
                         <!-- Submit Button -->
@@ -97,6 +98,22 @@
                                 <span class="font-weight-bold">Continue with Twitter</span>
                             </a>
                         </div>
+
+                        <input id="passwordConfirmation" type="password" v-model="passwordConfirmation" name="passwordConfirmation" placeholder="Confirm Password" class="form-control bg-white border-left-0 border-md">
+                    </div>
+
+                    <div v-if="errorRegistration" class="errorRegistration">{{errorRegistration}}</div>
+
+                    <button class="btn btn-primary btn-block py-2" @click="register">Register</button>
+
+                  
+                    <!-- Divider Text -->
+                    <div class="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
+                        <div class="border-bottom w-100 ml-5"></div>
+                        <span class="px-2 small text-muted font-weight-bold text-muted">OR</span>
+                        <div class="border-bottom w-100 mr-5"></div>
+                    </div>
+
 
                         <!-- Already Registered -->
                         <div class="text-center w-100">
@@ -138,12 +155,21 @@ export default {
         function register(){
             const info = {
                 email: email.value,
-                password: password.value
+                password: password.value,
+                firstName: firstName.value
+                
             };
             if (!errorRegistration.value){
                 firebaseAuthentication.createUserWithEmailAndPassword(info.email,info.password)
-                .then(()=>{
-                    router.replace("login");
+                .then((userCredentails)=>{
+                    
+                    return userCredentails.user
+                    .updateProfile({
+                        displayName: info.firstName,
+                    })
+                    .then(()=>{
+                     router.replace("login");
+                    })
                 },
                 (error) => {
                     errorRegistration.value = error.message;

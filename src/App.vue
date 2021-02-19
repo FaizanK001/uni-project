@@ -1,9 +1,14 @@
 <template>
   <div>
     <Navbar/>
+
   </div> 
 
   <Footer/>
+
+  
+  
+</div>
 
 </template>
 

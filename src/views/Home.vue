@@ -79,12 +79,8 @@
       <h3>How to use our website</h3>
       <p> **Link to about page**</p>
     </div>
-<<<<<<< Updated upstream
   </div>
-=======
-  
->>>>>>> Stashed changes
-</div>
+
   
 </template>
 

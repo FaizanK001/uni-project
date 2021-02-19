@@ -3,9 +3,7 @@
     <Navbar/>
   </div> 
 
-<v-footer>
   <Footer/>
-</v-footer>
 
 </template>
 

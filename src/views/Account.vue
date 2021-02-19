@@ -43,8 +43,10 @@ export default {
   setup() {
     const firstname = ref(null);
     const lastname = ref("Antczak");
-    const email = ref("hubant@gmail.com");
+    const email = ref("");
     const updateCheck = ref(false);
+
+    
 
     firebaseFireStore
       .collection("users")

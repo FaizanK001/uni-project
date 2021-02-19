@@ -13,6 +13,7 @@ export default {
   name: 'Home',
   components: {
     LineChart,
+  
   },
 }
 </script>

@@ -11,7 +11,7 @@
   <!-- The slideshow -->
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="../assets/cdmp-banner.png" height="550"  >
+      <img src="../assets/cdm-banner.png" height="550"  >
     </div>
     <div class="carousel-item">
       <img src="../assets/cardiomyopathy-chart.jpg"  height="550" >

@@ -1,7 +1,7 @@
 <template>
-  <div id="home">
+  <div id="chart">
 
-    <h1>this is home page</h1>
+    <h1>Users:</h1>
   </div>
 </template>
 
@@ -19,7 +19,7 @@ export default {
 
 <style>
 
-#home {
+#chart {
   min-height: 100vh;
 }
 

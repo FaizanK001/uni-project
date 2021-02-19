@@ -40,9 +40,9 @@ export default {
   components: { AccountDetails, AccountUpdate },
   
   setup() {
-    const firstname = ref("Hubert");
-    const lastname = ref("Antczak");
-    const email = ref("hubant@gmail.com");
+    const firstname = ref("");
+    const lastname = ref("");
+    const email = ref("");
     const updateCheck = ref(false);
     
     function updateProfile() {

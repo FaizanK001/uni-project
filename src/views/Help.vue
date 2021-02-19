@@ -2,7 +2,7 @@
   <div id="help">
 
     <h3>How Can We Help </h3>
-
+<h4></h4>
     <h2>1.What personally identifiable information is collected from the user?</h2>
     <p>Cardiomyopathies will only collect personally identifiable information such as gender, email, names and web browser cookies. All of the data that been collected will be safe and We will not sell, share, or rent this information to third parties.</p>
     

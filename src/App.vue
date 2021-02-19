@@ -1,12 +1,9 @@
 <template>
   <div>
     <Navbar/>
-  </div> 
-
-<v-footer>
   <Footer/>
-</v-footer>
-
+  
+</div>
 </template>
 
 

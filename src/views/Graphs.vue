@@ -1,7 +1,9 @@
 <template>
- <h3>Line Chart Example</h3>
+<div class="lineChart">
+    <h3>Line Chart Example</h3>
   <div>
     <line-chart class="center"></line-chart>
+  </div>
   </div>
 </template>
 
@@ -10,7 +12,6 @@
 import LineChart from "@/components/LineChart";
 
 export default {
-  name: 'Home',
   components: {
     LineChart,
   
@@ -23,5 +24,7 @@ export default {
 .center {
   display: flex;
   justify-content: center;
+  margin-bottom: 154px;
+  margin-top: 100px;
 }
 </style>

@@ -1,27 +1,30 @@
 <template>
-  <div id="chart">
-
-    <h1>Users:</h1>
+ <h3>Line Chart Example</h3>
+  <div>
+    <line-chart class="center"></line-chart>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-
+import LineChart from "@/components/LineChart";
 
 export default {
   name: 'Home',
   components: {
+    LineChart,
   
-  }
+  },
 }
 </script>
 
 <style>
 
-#chart {
-  min-height: 100vh;
+.center {
+  display: flex;
+  justify-content: center;
 }
+
 
 </style>
 

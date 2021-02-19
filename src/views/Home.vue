@@ -1,6 +1,6 @@
 <template>
 
- 
+<div> 
   <div class="home">
     <br>
     <Carousel/>
@@ -10,7 +10,7 @@
   <search-bar/>
   <hr class="new5">
   <br>
-<div class="row">
+
   <div class="leftcolumn">
     <div class="card">
       <h2>What is Cardiomyopathy?</h2>
@@ -84,7 +84,7 @@
     <h1>Users:</h1>
   </div>
 </div>
-  
+</div>
 </template>
 
 <style>

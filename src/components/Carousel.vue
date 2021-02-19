@@ -1,35 +1,32 @@
 <template>
- <div id="myCarousel" class="carousel slide" data-ride="carousel">
+<div id="demo" class="carousel slide" data-ride="carousel">
+
   <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-    <li data-target="#myCarousel" data-slide-to="1"></li>
-    <li data-target="#myCarousel" data-slide-to="2"></li>
-  </ol>
-
-  <!-- Wrapper for slides -->
+  <ul class="carousel-indicators">
+    <li data-target="#demo" data-slide-to="0" class="active"></li>
+    <li data-target="#demo" data-slide-to="1"></li>
+    <li data-target="#demo" data-slide-to="2"></li>
+  </ul>
+  
+  <!-- The slideshow -->
   <div class="carousel-inner">
-    <div class="item active">
-      <img src="../assets/cardiomyopathy-chart.jpg" alt="Los Angeles">
+    <div class="carousel-item active">
+      <img src="../assets/cdmp-banner.png" height="550"  >
     </div>
-
-    <div class="item">
-      <img src="../assets/cardiomyopathy-chart.jpg" alt="Chicago">
+    <div class="carousel-item">
+      <img src="../assets/cardiomyopathy-chart.jpg"  height="550" >
     </div>
-
-    <div class="item">
-      <img src="../assets/logo.png" alt="New York">
+    <div class="carousel-item">
+      <img src="../assets/cdmp-map.webp" height="550" >
     </div>
   </div>
-
+  
   <!-- Left and right controls -->
-  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left"></span>
-    <span class="sr-only">Previous</span>
+  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
   </a>
-  <a class="right carousel-control" href="#myCarousel" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right"></span>
-    <span class="sr-only">Next</span>
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
   </a>
 </div>
 
@@ -40,7 +37,7 @@
   
 export default {
   name: 'Home',
-  components: {
+  components: { 
   
   },
   data() {
@@ -61,3 +58,10 @@ export default {
 
 
 </script>
+<style>
+
+
+
+
+
+</style>

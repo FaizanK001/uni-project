@@ -2,13 +2,12 @@
   <div>
     <Navbar/>
 
-  </div> 
 
   <Footer/>
 
   
-  
-</div>
+    </div> 
+
 
 </template>
 

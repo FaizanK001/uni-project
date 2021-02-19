@@ -1,0 +1,64 @@
+
+* {
+  box-sizing: border-box;
+}
+
+/* Add a gray background color with some padding */
+body {
+  font-family: Arial;
+  background: white;
+}
+
+.my-custom-scrollbar {
+position: relative;
+height: 200px;
+overflow: auto;
+}
+.table-wrapper-scroll-y {
+display: block;
+}
+
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {   
+  float: center;
+  width: 75%;
+}
+
+/* Right column */
+.rightcolumn {
+  float: left;
+  width: 25%;
+  padding-left: 10px;
+  max-height: 50px;
+  
+}
+
+
+/* Add a card effect for articles */
+.card {
+   background-color: #ffffff;
+   padding: 20px;
+   border-block-color: black;
+   border-block-start-width: 10px;
+   border-block-end-width: 10px;
+   margin-top: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+hr.new5 {
+  border: 10px solid rgb(10, 10, 10);
+  border-radius: 5px;
+}
+
+h4{
+  text-align: left;
+}
+
+

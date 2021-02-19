@@ -14,7 +14,6 @@
   <div class="leftcolumn">
     <div class="card">
       <h2>What is Cardiomyopathy?</h2>
-            <img src='../assets/heart-health-banner.jpg' >
         <h3>Cardiomyopathy refers to diseases of the heart muscle.
            These diseases have many causes, signs and symptoms as well as treatments. 
            In most cases, cardiomyopathy causes the heart muscle to become enlarged, thick or rigid. 
@@ -27,6 +26,7 @@
   </h3>    
   </div>
   </div>
+</div>
   <div class="rightcolumn">
     <div class="card">
       <h4 font-weight= "bold">The main types of cardiomyopathy</h4>
@@ -79,12 +79,16 @@
       <h3>How to use our website</h3>
       <p> **Link to about page**</p>
     </div>
+<<<<<<< Updated upstream
   </div>
+=======
+  
+>>>>>>> Stashed changes
 </div>
   
 </template>
 
-<style>
+<style scoped>
 * {
   box-sizing: border-box;
 }
@@ -146,8 +150,6 @@ hr.new5 {
 h4{
   text-align: left;
 }
-
-
 </style>
 
 <script>
@@ -166,3 +168,11 @@ export default {
     
 }
 </script>
+<<<<<<< Updated upstream
+=======
+
+
+
+
+
+>>>>>>> Stashed changes

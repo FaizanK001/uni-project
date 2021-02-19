@@ -79,6 +79,9 @@
       <h3>How to use our website</h3>
       <p> **Link to about page**</p>
     </div>
+  <div id="chart">
+
+    <h1>Users:</h1>
   </div>
 </div>
   
@@ -166,3 +169,12 @@ export default {
     
 }
 </script>
+
+<style>
+
+#chart {
+  min-height: 100vh;
+}
+
+</style>
+

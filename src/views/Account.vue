@@ -6,19 +6,29 @@
     </div>
     
     
-      <div id="details-display-box" class="card">
-        <!-- User profile display -->
-        <div v-if="updateCheck === false">
-          <account-details></account-details>
-          <button type="button" class="btn btn-primary" @click="updateProfile()">Update details</button>
+      <div id="details-display-box" class=" card">
+        
+        <div class="border-margin border-padding card">
+          <!-- User profile display -->
+          <div v-if="updateCheck === false">
+            <account-details></account-details>
+            <button type="button" class="btn btn-primary" @click="updateProfile()">Update details</button>
+          </div>
+
+          <!-- Profile update display -->
+          <div v-if="updateCheck === true">
+            <account-update></account-update>
+            <button type="button" class="btn btn-primary" @click="updateProfile()">Cancel</button>
+            <button type="button" class="btn btn-primary" @click="updateProfile()">Save details</button>
+          </div>
         </div>
 
-        <!-- Profile update display -->
-        <div v-if="updateCheck === true">
-          <account-update></account-update>
-          <button type="button" class="btn btn-primary" @click="updateProfile()">Cancel</button>
-          <button type="button" class="btn btn-primary" @click="updateProfile()">Save details</button>
+        <!-- Display user options -->
+        <div class="border-padding card">
+          <button type="button" class="btn btn-primary" @click="insertData()">Insert Data</button>
+          <button type="button" class="btn btn-primary" @click="deleteData()">Delete Data</button>
         </div>
+        
       </div>
 
       <!-- Data Section -->
@@ -54,13 +64,22 @@ export default {
       .get()
       .then((snapshot) => {
         firstname.value = snapshot.data().firstName;
+        lastname.value = snapshot.data().lastName;
       })
     
     function updateProfile() {
       updateCheck.value = !updateCheck.value;
     }
 
-    return { firstname, lastname, email, updateCheck, updateProfile };
+    function deleteData() {
+
+    }
+
+    function insertData() {
+
+    }
+
+    return { firstname, lastname, email, updateCheck, updateProfile, insertData, deleteData };
   },
 }
 </script>
@@ -76,6 +95,7 @@ export default {
 .btn {
   margin-left: 10px;
   margin-right: 10px;
+  margin-bottom: 10px;
 }
 
 .welcome-text {
@@ -98,6 +118,14 @@ export default {
 
 #account {
   min-height: 100vh;
+}
+
+.border-margin {
+  margin-bottom: 10px;
+}
+
+.border-padding {
+  padding: 10px;
 }
 
 </style>

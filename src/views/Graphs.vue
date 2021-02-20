@@ -4,7 +4,7 @@
 
    <div class="d-flex w-100 align-items-center justify-content-center welcome-box">
       <h1 class="welcome-text"></h1>
-   </div>     
+   </div>
 
    <!-- Data navigation bar -->
    <div id="mutation-data-nav" class="full-width card">
@@ -47,12 +47,13 @@
 
 <script>
 
+import LineChart from "@/components/LineChart";
+
 export default {
-
-   setup() {
-
-      return { };
-   },
+  components: {
+    LineChart,
+  
+  },
 }
 </script>
 
@@ -87,30 +88,5 @@ body {
 
 #graphs {
    min-height: 100vh;
-// @ is an alias to /src
-import LineChart from "@/components/LineChart";
-
-export default {
-  components: {
-    LineChart,
-  
-  },
 }
-</script>
-
-<style scoped>
-.center {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 160px;
-  margin-top: 20px;
-}
-#Chart h3 {
-    padding-top: 30px;
-    font-size: 30px;
-    padding-bottom: 25px;
-    Color:rgb(243, 24, 24);
-    font-weight: bold;
-}
-
 </style>

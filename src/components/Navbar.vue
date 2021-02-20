@@ -18,7 +18,7 @@
       
       <div v-bind:class="{'hidden': !showMenu, 'flex': showMenu}" class="lg:flex lg:flex-grow items-center">
         <ul class="nav flex flex-col lg:flex-row list-none ml-auto text-white">
-			<li class="nav-item">
+			<li class="nav-item">  
        <router-link class="nav-link" to="/">Home</router-link>
     </li>
     <li class="nav-item">

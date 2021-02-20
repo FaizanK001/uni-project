@@ -1,6 +1,6 @@
 <template>
 <div>
-  <nav class="relative flex flex-wrap items-center nav-link navbar-expand-lg bg-black ">
+  <nav class="relative flex flex-wrap items-center nav-link navbar-expand-lg bg-black">
     <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
       <div class="w-full relative flex justify-between lg:w-auto  px-4 lg:static lg:block lg:justify-start">
         <a class="logo text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-no-wrap uppercase text-white" >

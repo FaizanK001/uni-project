@@ -2,7 +2,7 @@
   <div id="account" class="d-flex align-content-start flex-wrap">
 
     <div class="d-flex w-100 align-items-center justify-content-center welcome-box">
-      <h1 class="welcome-text">Welcome {{ firstname }} {{ lastname }}! </h1>
+      <h1 class="welcome-text">Welcome {{ user.email }}! </h1>
     </div>
     
     
@@ -13,7 +13,7 @@
           <h1 class="card-heading">My Details</h1>
           <!-- User profile display -->
           <div v-if="updateCheck === false">
-            <account-details></account-details>
+            <account-details :user=user></account-details>
             <button type="button" class="btn btn-primary" @click="updateProfile()">Update details</button>
           </div>
 
@@ -54,32 +54,34 @@
 
 <script>
 // @ is an alias to /src
-import { ref } from "vue";
+import { ref, reactive } from "vue";
 import AccountDetails from '../components/AccountDetails.vue';
 import AccountUpdate from '../components/AccountUpdate.vue';
 import InsertData from '../components/InsertData.vue';
-import { firebaseFireStore } from '../firebase/database.js';
+import firebase from 'firebase/app';
 
 export default {
   name: "Account",
   components: { AccountDetails, AccountUpdate, InsertData },
   
   setup() {
-    const firstname = ref("");
-    const lastname = ref("");
-    const email = ref("");
+
+    const user = reactive ({
+      firstName: "name",
+      lastName: "lastname",
+      email: "email",
+      institution: "MMU",
+      telephone: "123456789",
+      address: "123 address street"
+    })
+
+    if (firebase.auth().currentUser !== null) {
+      user.email = firebase.auth().currentUser.email;
+    }
+
     const updateCheck = ref(false);
     const insertCheck = ref(false);
 
-    firebaseFireStore
-      .collection("users")
-      .doc("5YzGaye9mXxBarCec3j9")
-      .get()
-      .then((snapshot) => {
-        firstname.value = snapshot.data().firstName;
-        lastname.value = snapshot.data().lastName;
-      })
-    
     function updateProfile() {
       updateCheck.value = !updateCheck.value;
     }
@@ -88,7 +90,7 @@ export default {
       insertCheck.value = !insertCheck.value;
     }
 
-    return { firstname, lastname, email, updateCheck, insertCheck, updateProfile, insertData };
+    return { user, updateCheck, insertCheck, updateProfile, insertData };
   },
 }
 </script>

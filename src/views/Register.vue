@@ -14,6 +14,11 @@
 
             <!-- Registeration Form -->
             <div class="col-md-7 col-lg-6 ml-auto">
+                
+                <div v-if="errorRegistration !== null" class="alert alert-danger" role="alert">
+                    <strong>Warning!</strong> {{ errorRegistration }}
+                </div>
+
                 <form @submit.prevent>
                     <div class="row">
 
@@ -67,7 +72,35 @@
                             <input id="passwordConfirmation" type="password" v-model="passwordConfirmation" name="passwordConfirmation" placeholder="Confirm Password" class="form-control bg-white border-left-0 border-md">
                         </div>
 
-                        <div v-if="errorRegistration" class="errorRegistration">{{errorRegistration}}</div>
+                        <!-- Institution Address -->
+                        <div class="input-group col-lg-12 mb-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                    <i class="fa fa-address-book text-muted"></i>
+                                </span>
+                            </div>
+                            <input id="institution" type="text" name="institution" v-model="institution" placeholder="Institution Name" class="form-control bg-white border-left-0 border-md">
+                        </div>
+
+                        <!-- Telephone Number -->
+                        <div class="input-group col-lg-12 mb-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                    <i class="fa fa-address-book text-muted"></i>
+                                </span>
+                            </div>
+                            <input id="telephone" type="text" name="telephone" v-model="telephone" placeholder="Telephone Number" class="form-control bg-white border-left-0 border-md">
+                        </div>
+
+                        <!-- Address -->
+                        <div class="input-group col-lg-12 mb-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                    <i class="fa fa-address-book text-muted"></i>
+                                </span>
+                            </div>
+                            <input id="address" type="text" name="address" v-model="address" placeholder="Address" class="form-control bg-white border-left-0 border-md">
+                        </div>
                         
                         <!-- Submit Button -->
                         <button class="btn btn-primary btn-block py-2" @click="register">Register</button>
@@ -115,6 +148,8 @@
 import {ref, watch} from "vue";
 import {useRouter} from "vue-router";
 import {firebaseAuthentication} from "../firebase/database";
+import firebase from 'firebase/app';
+
 export default {
     name: "register",
     emits: ["register-clicked"],
@@ -124,8 +159,13 @@ export default {
         const lastName = ref("");
         const email = ref("");
         const password= ref("");
+        const institution = ref("");
+        const telephone = ref("");
+        const address = ref("")
         const passwordConfirmation = ref("");
         const errorRegistration = ref("");
+        const router = useRouter();
+        var db = firebase.firestore();
 
         watch(passwordConfirmation, ()=>{
             if(password.value !== "" && passwordConfirmation.value!== "" && password.value !== passwordConfirmation.value){
@@ -134,11 +174,16 @@ export default {
             errorRegistration.value=null;
         }
         });
-        const router = useRouter();
+
         function register(){
             const info = {
+                firstName: firstName.value,
+                lastName: lastName.value,
                 email: email.value,
-                password: password.value
+                password: password.value,
+                institution: institution.value,
+                telephone: telephone.value,
+                address: address.value,
             };
             if (!errorRegistration.value){
                 firebaseAuthentication.createUserWithEmailAndPassword(info.email,info.password)
@@ -147,19 +192,28 @@ export default {
                 },
                 (error) => {
                     errorRegistration.value = error.message;
-                }
-                );
-            }
+                },
+
+                db.collection("users").doc(info.email).set({
+                    first: info.firstName,
+                    last: info.lastName,
+                    institution: info.institution,
+                    telephone: info.telephone,
+                    address: info.address,
+                })
+            )}
         }
         return{
             firstName,
             lastName,
             email,
+            institution,
+            telephone,
+            address,
             password,
             passwordConfirmation,
             errorRegistration,
             register
-
         };
     },
 

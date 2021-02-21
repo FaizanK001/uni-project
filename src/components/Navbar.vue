@@ -45,7 +45,7 @@
               <li class="nav-item">
                 <router-link class="nav-link" to="/help">Help</router-link>
               </li>
-              <li class="nav-item">
+              <li class="nav-item" v-if="user">
                  <router-link class="nav-link" to="/account">Account</router-link>
               </li>
             </ul>
@@ -65,9 +65,9 @@
 
             <ul class="text-white" v-if="user">
               <li  class="nav-item">
-                <button type="submit" v-show="log" @click="logout">
-                 <i class="fas fa-sign-out-alt"></i> Logout
-                </button>
+                <router-link class="nav-link login " v-show="log" @click="logout"  to="/"
+                  ><i class="fas fa-sign-in-alt"></i> Logout</router-link
+                >
               </li>
             </ul>
           </div>

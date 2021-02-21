@@ -3,13 +3,14 @@ import "firebase/auth";
 import "firebase/firestore";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDhtg4_cHjKbL-EPa8CPaXT4NS9pHpqgMY",
-    authDomain: "cardiomyopathy-p.firebaseapp.com",
-    projectId: "cardiomyopathy-p",
-    storageBucket: "cardiomyopathy-p.appspot.com",
-    messagingSenderId: "740652095333",
-    appId: "1:740652095333:web:6d6c590d44b0a1a96eb38c"
-  };
+    apiKey: "AIzaSyCgaZ7gCaFR91IzPAFM2vui9blIOZY1kl8",
+    authDomain: "cardiomyopathydb-f3aec.firebaseapp.com",
+    projectId: "cardiomyopathydb-f3aec",
+    storageBucket: "cardiomyopathydb-f3aec.appspot.com",
+    messagingSenderId: "594685776429",
+    appId: "1:594685776429:web:6bb2e3f94b1dbf86d8dea4"
+};
+
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     const firebaseAuthentication = firebase.auth();

@@ -1,39 +1,38 @@
 <template>
     <div class="w-100">
         <div class="field card" background="bg-secondary">
-            <p>First Name</p>
+            <p>First Name: {{ user.firstName }}</p>
         </div>
 
         <div class="field card" background="bg-secondary">
-            <p>Last Name</p>
+            <p>Last Name: {{ user.lastName }}</p>
         </div>
 
         <div class="field card" background="bg-secondary">
-            <p>Email</p>
+            <p>Email: {{ user.email }}</p>
         </div>
 
         <div class="field card" background="bg-secondary">
-            <p>Institution</p>
+            <p>Institution: {{ user.institution }}</p>
         </div>
 
         <div class="field card" background="bg-secondary">
-            <p>Telephone</p>
+            <p>Telephone: {{ user.telephone }}</p>
         </div>
 
         <div class="field card" background="bg-secondary">
-            <p>Address</p>
+            <p>Address: {{ user.address }}</p>
         </div>
     </div>
 </template>
 
 <script>
+
 export default {
     name: "UserDetails",
 
     props: [
-        "firstname",
-        "lastname",
-        "email"
+        "user"
     ],
 
     setup () {

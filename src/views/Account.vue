@@ -7,20 +7,22 @@
     
     
       <div id="details-display-box" class=" card">
+
+        <div v-if="systemMessage !== null" class="alert alert-success" role="alert">
+          <strong>Success!</strong> {{ systemMessage }}
+        </div>
         
         <div class="border-margin border-padding card">
           <h1 class="card-heading">My Details</h1>
           <!-- User profile display -->
           <div v-if="updateCheck === false">
             <account-details :user=user></account-details>
-            <button type="button" class="btn btn-primary" @click="updateProfile()">Update details</button>
+            <button type="button" class="btn btn-primary" @click="updateProfileBool()">Update details</button>
           </div>
 
           <!-- Profile update display -->
           <div v-if="updateCheck === true">
-            <account-update></account-update>
-            <button type="button" class="btn btn-primary" @click="updateProfile()">Cancel</button>
-            <button type="button" class="btn btn-primary" @click="updateProfile()">Save details</button>
+            <account-update :user=user @cancel="updateProfileBool()" @user-updated="detailsUpdatedMessage()"></account-update>
           </div>
         </div>
 
@@ -28,7 +30,7 @@
         <div class="border-padding card">
           <h1 class="card-heading">Manage Data</h1>
           <button type="button" class="btn btn-primary" @click="insertData()">Insert Data</button>
-          <button type="button" class="btn btn-primary" @click="deleteData()">Delete Data</button>
+          <button type="button" class="btn btn-primary" @click="updateMessage()">Delete Data</button>
         </div>
         
       </div>
@@ -66,14 +68,15 @@ export default {
   setup() {
     const updateCheck = ref(false);
     const insertCheck = ref(false);
+    var systemMessage = ref(null);
     var db = firebase.firestore();
-    const user = reactive ({
-      firstName: "name",
-      lastName: "lastname",
-      email: "email",
-      institution: "MMU",
-      telephone: "123456789",
-      address: "123 address street"
+    var user = reactive ({
+      firstName: "",
+      lastName: "",
+      email: "email@template.com",
+      institution: "",
+      telephone: "",
+      address: ""
     })
 
     if (firebase.auth().currentUser !== null) {
@@ -84,11 +87,11 @@ export default {
 
     docRef.get().then((doc) => {
     if (doc.exists) {
-        user.firstName = doc.get("first");
-        user.lastName = doc.get("last");
-        user.institution = doc.get("institution");
-        user.telephont = doc.get("telephone");
-        user.address = doc.get("address");
+      user.firstName = doc.get("first");
+      user.lastName = doc.get("last");
+      user.institution = doc.get("institution");
+      user.telephone = doc.get("telephone");
+      user.address = doc.get("address");
     } else {
       // doc.data() will be undefined in this case
       console.log("No such document!");
@@ -97,7 +100,7 @@ export default {
       console.log("Error getting document:", error);
     });
 
-    function updateProfile() {
+    function updateProfileBool() {
       updateCheck.value = !updateCheck.value;
     }
 
@@ -105,7 +108,27 @@ export default {
       insertCheck.value = !insertCheck.value;
     }
 
-    return { user, updateCheck, insertCheck, updateProfile, insertData };
+    function detailsUpdatedMessage() {
+      systemMessage.value = "Profile information updated!";
+      updateCheck.value = !updateCheck.value;
+
+      docRef.get().then((doc) => {
+      if (doc.exists) {
+        user.firstName = doc.get("first");
+        user.lastName = doc.get("last");
+        user.institution = doc.get("institution");
+        user.telephone = doc.get("telephone");
+        user.address = doc.get("address");
+      } else {
+      // doc.data() will be undefined in this case
+        console.log("No such document!");
+      }
+      }).catch((error) => {
+        console.log("Error getting document:", error);
+      });
+    }
+
+    return { user, updateCheck, insertCheck, updateProfileBool, insertData, detailsUpdatedMessage, systemMessage };
   },
 }
 </script>

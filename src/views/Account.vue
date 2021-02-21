@@ -2,14 +2,13 @@
   <div id="account" class="d-flex align-content-start flex-wrap">
 
     <div class="d-flex w-100 align-items-center justify-content-center welcome-box">
-      <h1 class="welcome-text">Welcome {{ user.email }}! </h1>
+      <h1 class="welcome-text">Welcome {{ user.firstName }} {{ user.lastName }}! </h1>
     </div>
     
     
       <div id="details-display-box" class=" card">
         
         <div class="border-margin border-padding card">
-
           <h1 class="card-heading">My Details</h1>
           <!-- User profile display -->
           <div v-if="updateCheck === false">
@@ -65,7 +64,9 @@ export default {
   components: { AccountDetails, AccountUpdate, InsertData },
   
   setup() {
-
+    const updateCheck = ref(false);
+    const insertCheck = ref(false);
+    var db = firebase.firestore();
     const user = reactive ({
       firstName: "name",
       lastName: "lastname",
@@ -79,8 +80,22 @@ export default {
       user.email = firebase.auth().currentUser.email;
     }
 
-    const updateCheck = ref(false);
-    const insertCheck = ref(false);
+    var docRef = db.collection("users").doc(user.email);
+
+    docRef.get().then((doc) => {
+    if (doc.exists) {
+        user.firstName = doc.get("first");
+        user.lastName = doc.get("last");
+        user.institution = doc.get("institution");
+        user.telephont = doc.get("telephone");
+        user.address = doc.get("address");
+    } else {
+      // doc.data() will be undefined in this case
+      console.log("No such document!");
+    }
+    }).catch((error) => {
+      console.log("Error getting document:", error);
+    });
 
     function updateProfile() {
       updateCheck.value = !updateCheck.value;

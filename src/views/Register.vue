@@ -163,7 +163,7 @@ export default {
         const telephone = ref("");
         const address = ref("")
         const passwordConfirmation = ref("");
-        const errorRegistration = ref("");
+        const errorRegistration = ref(null);
         const router = useRouter();
         var db = firebase.firestore();
 
@@ -185,7 +185,7 @@ export default {
                 telephone: telephone.value,
                 address: address.value,
             };
-            if (!errorRegistration.value){
+            if (!errorRegistration.value && info.email !== "") {
                 firebaseAuthentication.createUserWithEmailAndPassword(info.email,info.password)
                 .then(()=>{
                     router.replace("login");
@@ -201,8 +201,17 @@ export default {
                     telephone: info.telephone,
                     address: info.address,
                 })
-            )}
+                .then(() => {
+                    console.log("Document successfully written!");
+                })
+                .catch((error) => {
+                    console.error("Error writing document: ", error);
+                })
+            )} else {
+                errorRegistration.value = "Enter an email address!"
+            }
         }
+        
         return{
             firstName,
             lastName,
@@ -216,7 +225,6 @@ export default {
             register
         };
     },
-
 };
 </script>
 

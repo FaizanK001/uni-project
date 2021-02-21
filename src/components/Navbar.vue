@@ -35,36 +35,38 @@
               class="nav flex flex-col lg:flex-row list-none ml-auto text-white"
             >
               <li class="nav-item">
-                <router-link class="nav-link" to="/">HomePage</router-link>
+                <router-link class="nav-link" to="/">Home</router-link>
               </li>
               <li class="nav-item">
-                <router-link class="nav-link" to="/services"
-                  >Services</router-link
+                <router-link class="nav-link" to="/graphs"
+                  >Graphs</router-link
                 >
               </li>
               <li class="nav-item">
-                <router-link class="nav-link" to="/about">About</router-link>
+                <router-link class="nav-link" to="/help">Help</router-link>
               </li>
-              <li></li>
+              <li class="nav-item">
+                 <router-link class="nav-link" to="/account">Account</router-link>
+              </li>
             </ul>
 
-            <ul class="nav flex  text-white" v-if="!user">
-              <li>
+            <ul class="nav flex flex-col lg:flex-row list-none  nav flex  text-white" v-if="!user">
+              <li  class="nav-item">
                 <router-link class="nav-link login "  to="/login"
-                  >Sign In</router-link
+                  ><i class="fas fa-sign-in-alt"></i> Sign In</router-link
                 >
               </li>
-              <li>
+              <li  class="nav-item">
                 <router-link class="nav-link" to="/register"
-                  >Register</router-link
+                  > <i class="fas fa-user"></i> Register</router-link
                 >
               </li>
             </ul>
 
             <ul class="text-white" v-if="user">
-              <li>
+              <li  class="nav-item">
                 <button type="submit" v-show="log" @click="logout">
-                  Logout
+                 <i class="fas fa-sign-out-alt"></i> Logout
                 </button>
               </li>
             </ul>

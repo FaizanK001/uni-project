@@ -9,6 +9,8 @@
       <div id="details-display-box" class=" card">
         
         <div class="border-margin border-padding card">
+
+          <h1 class="card-heading">My Details</h1>
           <!-- User profile display -->
           <div v-if="updateCheck === false">
             <account-details></account-details>
@@ -25,6 +27,7 @@
 
         <!-- Display user options -->
         <div class="border-padding card">
+          <h1 class="card-heading">Manage Data</h1>
           <button type="button" class="btn btn-primary" @click="insertData()">Insert Data</button>
           <button type="button" class="btn btn-primary" @click="deleteData()">Delete Data</button>
         </div>
@@ -32,8 +35,18 @@
       </div>
 
       <!-- Data Section -->
+
       <div id="data-display-box" class="card">
-        <p>Data</p>
+
+        <div v-if="insertCheck === true">
+          <InsertData/>
+        </div>
+
+        <div v-if="insertCheck === false">
+          <div class="card">
+          </div>
+        </div>
+
       </div>
 
   </div>
@@ -41,22 +54,22 @@
 
 <script>
 // @ is an alias to /src
-import {ref} from "vue";
+import { ref } from "vue";
 import AccountDetails from '../components/AccountDetails.vue';
 import AccountUpdate from '../components/AccountUpdate.vue';
+import InsertData from '../components/InsertData.vue';
 import { firebaseFireStore } from '../firebase/database.js';
 
 export default {
   name: "Account",
-  components: { AccountDetails, AccountUpdate },
+  components: { AccountDetails, AccountUpdate, InsertData },
   
   setup() {
     const firstname = ref("");
     const lastname = ref("");
     const email = ref("");
     const updateCheck = ref(false);
-
-    
+    const insertCheck = ref(false);
 
     firebaseFireStore
       .collection("users")
@@ -71,20 +84,21 @@ export default {
       updateCheck.value = !updateCheck.value;
     }
 
-    function deleteData() {
-
-    }
-
     function insertData() {
-
+      insertCheck.value = !insertCheck.value;
     }
 
-    return { firstname, lastname, email, updateCheck, updateProfile, insertData, deleteData };
+    return { firstname, lastname, email, updateCheck, insertCheck, updateProfile, insertData };
   },
 }
 </script>
 
 <style>
+
+.card-heading {
+  font-size: 30px;
+  margin-bottom: 20px; 
+}
 
 .welcome-box {
   height: 15vh;

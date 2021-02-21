@@ -28,8 +28,8 @@
      <router-link  class="nav-link" to="/login">Sign In</router-link> 
    </li>
   <li>
-      <router-link class="nav-link" to="/register">Register</router-link>
-     </li>
+          <router-link class="nav-link" to="/register">Register</router-link>
+        </li>
         </ul>
       </div>
     </div>

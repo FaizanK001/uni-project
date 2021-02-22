@@ -1,6 +1,5 @@
 <template>
 
-<div id="graphs" class="d-flex align-content-start flex-wrap">
 
    <div class="d-flex w-100 align-items-center justify-content-center welcome-box">
       <h1 class="welcome-text"></h1>
@@ -43,10 +42,7 @@
     <h3>Chart Example</h3>
     <line-chart class="center"></line-chart>
 </div>
-
-      <div id="graph-info" class="card">
-      </div>
-   </div>
+   
    
 </div>
 </template>
@@ -55,9 +51,12 @@
 
 import LineChart from "@/components/LineChart";
 
+
+
 export default {
    name: "Graphs",
    components: { LineChart },
+   
 
    setup () {
 
@@ -87,6 +86,12 @@ body {
 
 #mutation-data {
    min-height: 55vh;
+}
+.left {
+  display: flex;
+  justify-content: left;
+  margin-bottom: 160px;
+  margin-top: 20px;
 }
 
 .data-button {

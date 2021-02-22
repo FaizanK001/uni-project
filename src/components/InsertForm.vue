@@ -35,7 +35,7 @@
                 </select>
             </div>
             
-            <label for="xpoints">Graph X points</label>
+            <label for="xpoints">Graph X points:</label>
             <div id="xpoints" class="d-flex flex-nowrap justify-content-center form-group">
                 
                 <div class="small-first">
@@ -71,7 +71,7 @@
                 </div>
             </div>
 
-            <label for="ypoints">Graph Y points</label>
+            <label for="ypoints">Graph Y points:</label>
             <div id="ypoints" class="d-flex flex-nowrap justify-content-center form-group">
                 
                 <div class="small-first">

@@ -15,13 +15,13 @@
         <div class="border-margin border-padding card">
           <h1 class="card-heading">My Details</h1>
           <!-- User profile display -->
-          <div v-if="updateCheck === false">
+          <div v-if="updateProfileCheck === false">
             <account-details :user=user></account-details>
-            <button type="button" class="btn btn-primary" @click="updateProfileBool()">Update details</button>
+            <button type="button" class="btn btn-primary" @click="updateProfileBool()">Update Details</button>
           </div>
 
           <!-- Profile update display -->
-          <div v-if="updateCheck === true">
+          <div v-if="updateProfileCheck === true">
             <account-update :user=user @cancel="updateProfileBool()" @user-updated="detailsUpdatedMessage()"></account-update>
           </div>
         </div>
@@ -29,8 +29,10 @@
         <!-- Display user options -->
         <div class="border-padding card">
           <h1 class="card-heading">Manage Data</h1>
-          <button type="button" class="btn btn-primary" @click="insertData()">Insert Data</button>
-          <button type="button" class="btn btn-primary" @click="updateMessage()">Delete Data</button>
+          <button type="button" class="btn btn-primary" @click="showData()">Show my data</button>
+          <button type="button" class="btn btn-primary" @click="updateData()">{{ updateCheck ? 'Cancel Updating Data' : 'Update Data' }}</button>
+          <button type="button" class="btn btn-primary" @click="insertData()">{{ insertCheck ? 'Cancel Inserting Data' : 'Insert Data' }}</button>
+          <button type="button" class="btn btn-primary" @click="deleteData()">{{ deleteCheck ? 'Cancel Deleting Data' : 'Delete Data' }}</button>
         </div>
         
       </div>
@@ -43,9 +45,16 @@
           <insert-form @submitted="dataSubmittedMessage()"></insert-form>
         </div>
 
-        <div v-if="insertCheck === false">
-          <div class="card">
-          </div>
+        <div v-if="updateCheck === true">
+          <update-form></update-form>
+        </div>
+
+        <div v-if="deleteCheck === true">
+          <delete-form></delete-form>
+        </div>
+
+        <div v-if="insertCheck === false && deleteCheck === false && updateCheck === false">
+          <user-data></user-data>
         </div>
 
       </div>
@@ -59,15 +68,25 @@ import { ref, reactive } from "vue";
 import AccountDetails from '../components/AccountDetails.vue';
 import AccountUpdate from '../components/AccountUpdate.vue';
 import InsertForm from '../components/InsertForm.vue';
+import DeleteForm from '../components/DeleteForm.vue';
+import UpdateForm from '../components/UpdateForm.vue';
+import UserData from '../components/UserData.vue';
 import firebase from 'firebase/app';
 
 export default {
   name: "Account",
-  components: { AccountDetails, AccountUpdate, InsertForm },
+  components: { AccountDetails, 
+                AccountUpdate, 
+                InsertForm,
+                DeleteForm,
+                UpdateForm,
+                UserData },
   
   setup() {
-    const updateCheck = ref(false);
+    const updateProfileCheck = ref(false);
     const insertCheck = ref(false);
+    const updateCheck = ref(false);
+    const deleteCheck = ref(false);
     var systemMessage = ref(null);
     var db = firebase.firestore();
     var user = reactive ({
@@ -101,16 +120,36 @@ export default {
     });
 
     function updateProfileBool() {
-      updateCheck.value = !updateCheck.value;
+      updateProfileCheck.value = !updateProfileCheck.value;
     }
 
     function insertData() {
       insertCheck.value = !insertCheck.value;
+      updateCheck.value = false;
+      deleteCheck.value = false;
+    }
+
+    function updateData() {
+      updateCheck.value = !updateCheck.value;
+      insertCheck.value = false;
+      deleteCheck.value = false;
+    }
+
+    function deleteData() {
+      deleteCheck.value = !deleteCheck.value;
+      insertCheck.value = false;
+      updateCheck.value = false;
+    }
+
+    function showData() {
+      deleteCheck.value = false;
+      updateCheck.value = false;
+      insertCheck.value = false;
     }
 
     function detailsUpdatedMessage() {
       systemMessage.value = "Profile information updated!";
-      updateCheck.value = !updateCheck.value;
+      updateProfileCheck.value = !updateProfileCheck.value;
 
       docRef.get().then((doc) => {
       if (doc.exists) {
@@ -133,7 +172,7 @@ export default {
       systemMessage = "New data has been added!";
     }
 
-    return { user, updateCheck, insertCheck, updateProfileBool, insertData, detailsUpdatedMessage, systemMessage, dataSubmittedMessage };
+    return { user, deleteCheck, updateCheck, updateProfileCheck, insertCheck, updateProfileBool, insertData, detailsUpdatedMessage, systemMessage, updateData, dataSubmittedMessage, deleteData, showData };
   },
 }
 </script>

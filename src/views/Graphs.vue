@@ -31,16 +31,16 @@
             </select>
       </div>
 
-      <!-- Choose mutation 1 -->
+      <!-- Choose graph type -->
       <div class="form-group">
             <label for="graphType">Graph Type:</label>
             <select class="form-control" name="graphType" id="graphType">
-               <option value="force-time">Force vs Time</option>
-               <option value="sarcomereLength-time">Sarcomere Length vs Time</option>
-               <option value="sarcomereLength-time">Sliding-Velocity vs Calcium-Concentration</option>
-               <option value="sarcomereLength-time">Tension/Force vs Calcium-Concentration</option>
-               <option value="sarcomereLength-time">Force/Tension vs Sarcomere-Shortening</option>
-               <option value="sarcomereShortening-time">Sarcomere-Shortening vs Time</option>
+               <option value="ft">Force vs Time</option>
+               <option value="slt">Sarcomere Length vs Time</option>
+               <option value="svcc">Sliding-Velocity vs Calcium-Concentration</option>
+               <option value="tfcc">Tension/Force vs Calcium-Concentration</option>
+               <option value="ftss">Force/Tension vs Sarcomere-Shortening</option>
+               <option value="sst">Sarcomere-Shortening vs Time</option>
             </select>
       </div>
    </div>

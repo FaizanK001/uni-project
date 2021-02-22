@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="insertForm">
         <form>
             <div v-if="systemError !== ''" class="alert alert-danger" role="alert">
                 <strong>Warning!</strong> {{ systemError }}
@@ -154,6 +154,7 @@ export default {
         function submitData() {
             const graphInfo = reactive ({
                 name: name.value,
+                email: email.value,
                 description: description.value,
                 type: type.value,
                 mutation: mutation.value
@@ -184,7 +185,7 @@ export default {
             if(name.value !== "" && type.value !== "" && name.value !== "") {
                 db.collection("graphs").doc(docId).set({
                     name: graphInfo.name,
-                    email: email.value,
+                    email: graphInfo.email,
                     description: graphInfo.description,
                     type: graphInfo.type,
                     mutation: graphInfo.mutation,

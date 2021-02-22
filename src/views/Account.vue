@@ -8,7 +8,7 @@
     
       <div id="details-display-box" class=" card">
 
-        <div v-if="systemMessage !== null" class="alert alert-success" role="alert">
+        <div v-if="systemMessage !== ''" class="alert alert-success" role="alert">
           <strong>Success!</strong> {{ systemMessage }}
         </div>
         
@@ -41,12 +41,16 @@
 
       <div id="data-display-box" class="card">
 
+        <div v-if="dataMessage !== ''" class="alert alert-success" role="alert">
+          <strong>Success!</strong> {{ dataMessage }}
+        </div>
+
         <div v-if="insertCheck === true">
           <insert-form @submitted="dataSubmittedMessage()"></insert-form>
         </div>
 
         <div v-if="updateCheck === true">
-          <update-form></update-form>
+          <update-form @updated="dataUpdatedMessage()"></update-form>
         </div>
 
         <div v-if="deleteCheck === true">
@@ -87,7 +91,8 @@ export default {
     const insertCheck = ref(false);
     const updateCheck = ref(false);
     const deleteCheck = ref(false);
-    var systemMessage = ref(null);
+    var systemMessage = ref("");
+    var dataMessage = ref("");
     var db = firebase.firestore();
     var user = reactive ({
       firstName: "",
@@ -169,15 +174,35 @@ export default {
 
     function dataSubmittedMessage() {
       insertCheck.value = !insertCheck.value;
-      systemMessage = "New data has been added!";
+      dataMessage.value = "New experimental data has been added!";
     }
 
     function dataDeletedMessage() {
       deleteCheck.value = !deleteCheck.value;
-      systemMessage = "Experimental data has been removed!";
+      dataMessage.value = "Experimental data has been removed!";
     }
 
-    return { user, deleteCheck, updateCheck, dataDeletedMessage, updateProfileCheck, insertCheck, updateProfileBool, insertData, detailsUpdatedMessage, systemMessage, updateData, dataSubmittedMessage, deleteData, showData };
+    function dataUpdatedMessage() {
+      updateCheck.value = !updateCheck.value;
+      dataMessage.value = "Experimental data has been updated";
+    }
+
+    return { user, 
+             deleteCheck, 
+             updateCheck, 
+             dataDeletedMessage,
+             updateProfileCheck, 
+             insertCheck, 
+             updateProfileBool, 
+             insertData, 
+             dataUpdatedMessage,
+             detailsUpdatedMessage, 
+             systemMessage, 
+             updateData, 
+             dataSubmittedMessage, 
+             deleteData, 
+             showData,
+             dataMessage };
   },
 }
 </script>

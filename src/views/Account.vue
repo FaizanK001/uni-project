@@ -50,7 +50,7 @@
         </div>
 
         <div v-if="deleteCheck === true">
-          <delete-form></delete-form>
+          <delete-form @data-deleted="dataDeletedMessage()"></delete-form>
         </div>
 
         <div v-if="insertCheck === false && deleteCheck === false && updateCheck === false">
@@ -172,7 +172,12 @@ export default {
       systemMessage = "New data has been added!";
     }
 
-    return { user, deleteCheck, updateCheck, updateProfileCheck, insertCheck, updateProfileBool, insertData, detailsUpdatedMessage, systemMessage, updateData, dataSubmittedMessage, deleteData, showData };
+    function dataDeletedMessage() {
+      deleteCheck.value = !deleteCheck.value;
+      systemMessage = "Experimental data has been removed!";
+    }
+
+    return { user, deleteCheck, updateCheck, dataDeletedMessage, updateProfileCheck, insertCheck, updateProfileBool, insertData, detailsUpdatedMessage, systemMessage, updateData, dataSubmittedMessage, deleteData, showData };
   },
 }
 </script>

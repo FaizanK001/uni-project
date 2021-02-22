@@ -40,7 +40,7 @@
       <div id="data-display-box" class="card">
 
         <div v-if="insertCheck === true">
-          <InsertData/>
+          <insert-form @submitted="dataSubmittedMessage()"></insert-form>
         </div>
 
         <div v-if="insertCheck === false">
@@ -58,12 +58,12 @@
 import { ref, reactive } from "vue";
 import AccountDetails from '../components/AccountDetails.vue';
 import AccountUpdate from '../components/AccountUpdate.vue';
-import InsertData from '../components/InsertData.vue';
+import InsertForm from '../components/InsertForm.vue';
 import firebase from 'firebase/app';
 
 export default {
   name: "Account",
-  components: { AccountDetails, AccountUpdate, InsertData },
+  components: { AccountDetails, AccountUpdate, InsertForm },
   
   setup() {
     const updateCheck = ref(false);
@@ -128,7 +128,12 @@ export default {
       });
     }
 
-    return { user, updateCheck, insertCheck, updateProfileBool, insertData, detailsUpdatedMessage, systemMessage };
+    function dataSubmittedMessage() {
+      insertCheck.value = !insertCheck.value;
+      systemMessage = "New data has been added!";
+    }
+
+    return { user, updateCheck, insertCheck, updateProfileBool, insertData, detailsUpdatedMessage, systemMessage, dataSubmittedMessage };
   },
 }
 </script>

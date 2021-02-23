@@ -31,21 +31,15 @@
         <!-- Display user options -->
         <div class="border-padding card">
           <h1 class="card-heading">Manage Data</h1>
-<<<<<<< HEAD
           <button type="button" class="btn btn-primary" @click="showData()">Show my data</button>
           <button type="button" class="btn btn-primary" @click="updateData()">{{ updateCheck ? 'Cancel Updating Data' : 'Update Data' }}</button>
           <button type="button" class="btn btn-primary" @click="insertData()">{{ insertCheck ? 'Cancel Inserting Data' : 'Insert Data' }}</button>
           <button type="button" class="btn btn-primary" @click="deleteData()">{{ deleteCheck ? 'Cancel Deleting Data' : 'Delete Data' }}</button>
-=======
-          <button type="button" class="btn btn-primary" @click="insertData()">Insert Data</button>
-          <button type="button" class="btn btn-primary" @click="deleteData()">Delete Data</button>
->>>>>>> upstream/master
         </div>
         
       </div>
 
       <!-- Data Section -->
-
       <div id="data-display-box" class="card">
 
         <div v-if="dataMessage !== ''" class="alert alert-success" role="alert">
@@ -53,7 +47,7 @@
         </div>
 
         <div v-if="insertCheck === true">
-          <InsertData/>
+          <insert-form></insert-form>
         </div>
 
         <div v-if="updateCheck === true">
@@ -78,39 +72,28 @@
 import { ref, reactive } from "vue";
 import AccountDetails from '../components/AccountDetails.vue';
 import AccountUpdate from '../components/AccountUpdate.vue';
-<<<<<<< HEAD
 import InsertForm from '../components/InsertForm.vue';
 import DeleteForm from '../components/DeleteForm.vue';
 import UpdateForm from '../components/UpdateForm.vue';
 import UserData from '../components/UserData.vue';
-=======
-import InsertData from '../components/InsertData.vue';
->>>>>>> upstream/master
 import firebase from 'firebase/app';
 
 export default {
   name: "Account",
-<<<<<<< HEAD
   components: { AccountDetails, 
                 AccountUpdate, 
                 InsertForm,
                 DeleteForm,
                 UpdateForm,
                 UserData },
-=======
-  components: { AccountDetails, AccountUpdate, InsertData },
->>>>>>> upstream/master
   
   setup() {
     const updateProfileCheck = ref(false);
     const insertCheck = ref(false);
-<<<<<<< HEAD
     const updateCheck = ref(false);
     const deleteCheck = ref(false);
     var systemMessage = ref("");
     var dataMessage = ref("");
-=======
->>>>>>> upstream/master
     var db = firebase.firestore();
     const user = reactive ({
       firstName: "name",
@@ -142,13 +125,8 @@ export default {
       console.log("Error getting document:", error);
     });
 
-<<<<<<< HEAD
     function updateProfileBool() {
       updateProfileCheck.value = !updateProfileCheck.value;
-=======
-    function updateProfile() {
-      updateCheck.value = !updateCheck.value;
->>>>>>> upstream/master
     }
 
     function insertData() {
@@ -175,7 +153,6 @@ export default {
       insertCheck.value = false;
     }
 
-<<<<<<< HEAD
     function detailsUpdatedMessage() {
       systemMessage.value = "Profile information updated!";
       updateProfileCheck.value = !updateProfileCheck.value;
@@ -227,9 +204,6 @@ export default {
              deleteData, 
              showData,
              dataMessage };
-=======
-    return { user, updateCheck, insertCheck, updateProfile, insertData };
->>>>>>> upstream/master
   },
 }
 </script>

@@ -1,4 +1,5 @@
 <template>
+  
   <div id="account" class="d-flex align-content-start flex-wrap">
 
     <div class="d-flex w-100 align-items-center justify-content-center welcome-box">
@@ -40,6 +41,8 @@
       <!-- Data Section -->
 
       <div id="data-display-box" class="card">
+
+        <h1 class="card-heading">My Experimental Data</h1>
 
         <div v-if="dataMessage !== ''" class="alert alert-success" role="alert">
           <strong>Success!</strong> {{ dataMessage }}

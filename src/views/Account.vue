@@ -18,14 +18,12 @@
           <!-- User profile display -->
           <div v-if="updateProfileCheck === false">
             <account-details :user=user></account-details>
-            <button type="button" class="btn btn-primary" @click="updateProfile()">Update details</button>
+            <button type="button" class="btn btn-primary" @click="updateProfileBool()">Update details</button>
           </div>
 
           <!-- Profile update display -->
-          <div v-if="updateCheck === true">
-            <account-update></account-update>
-            <button type="button" class="btn btn-primary" @click="updateProfile()">Cancel</button>
-            <button type="button" class="btn btn-primary" @click="updateProfile()">Save details</button>
+          <div v-if="updateProfileCheck === true">
+            <account-update :user=user @cancel="updateProfileBool()" @user-updated="detailsUpdatedMessage()"></account-update>
           </div>
         </div>
 
@@ -50,7 +48,7 @@
         </div>
 
         <div v-if="insertCheck === true">
-          <insert-form></insert-form>
+          <insert-form @submitted="dataSubmittedMessage()"></insert-form>
         </div>
 
         <div v-if="updateCheck === true">

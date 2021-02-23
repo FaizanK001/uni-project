@@ -10,7 +10,7 @@
         <div v-if="experimentalData.length > 0">
             <div v-for="item in experimentalData" :key="item.index">
                 <div class="d-flex align-content-start flex-wrap card">
-                    <div class="d-flex data-card"><b>Document ID:</b>{{ item.id }}</div>
+                    <div class="data-card"><b>Document ID:</b>{{ item.id }}</div>
                     <div class="d-flex data-card"><b>Data set name:</b>{{ item.name }}</div>
                     <div class="d-flex data-card"><b>Data mutation sort:</b>{{ item.mutation }}</div>
                     <div class="d-flex data-card"><b>Data description:</b>{{ item.description }}</div>

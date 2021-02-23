@@ -29,14 +29,14 @@
 <script>
 
 export default {
-    name: "AccountDetails",
+    name: "UserDetails",
 
     props: [
         "user"
     ],
 
     setup () {
-        return {}
+        return {};
     }
 }
 </script>

@@ -17,22 +17,29 @@
           <!-- User profile display -->
           <div v-if="updateProfileCheck === false">
             <account-details :user=user></account-details>
-            <button type="button" class="btn btn-primary" @click="updateProfileBool()">Update Details</button>
+            <button type="button" class="btn btn-primary" @click="updateProfile()">Update details</button>
           </div>
 
           <!-- Profile update display -->
-          <div v-if="updateProfileCheck === true">
-            <account-update :user=user @cancel="updateProfileBool()" @user-updated="detailsUpdatedMessage()"></account-update>
+          <div v-if="updateCheck === true">
+            <account-update></account-update>
+            <button type="button" class="btn btn-primary" @click="updateProfile()">Cancel</button>
+            <button type="button" class="btn btn-primary" @click="updateProfile()">Save details</button>
           </div>
         </div>
 
         <!-- Display user options -->
         <div class="border-padding card">
           <h1 class="card-heading">Manage Data</h1>
+<<<<<<< HEAD
           <button type="button" class="btn btn-primary" @click="showData()">Show my data</button>
           <button type="button" class="btn btn-primary" @click="updateData()">{{ updateCheck ? 'Cancel Updating Data' : 'Update Data' }}</button>
           <button type="button" class="btn btn-primary" @click="insertData()">{{ insertCheck ? 'Cancel Inserting Data' : 'Insert Data' }}</button>
           <button type="button" class="btn btn-primary" @click="deleteData()">{{ deleteCheck ? 'Cancel Deleting Data' : 'Delete Data' }}</button>
+=======
+          <button type="button" class="btn btn-primary" @click="insertData()">Insert Data</button>
+          <button type="button" class="btn btn-primary" @click="deleteData()">Delete Data</button>
+>>>>>>> upstream/master
         </div>
         
       </div>
@@ -46,7 +53,7 @@
         </div>
 
         <div v-if="insertCheck === true">
-          <insert-form @submitted="dataSubmittedMessage()"></insert-form>
+          <InsertData/>
         </div>
 
         <div v-if="updateCheck === true">
@@ -71,36 +78,47 @@
 import { ref, reactive } from "vue";
 import AccountDetails from '../components/AccountDetails.vue';
 import AccountUpdate from '../components/AccountUpdate.vue';
+<<<<<<< HEAD
 import InsertForm from '../components/InsertForm.vue';
 import DeleteForm from '../components/DeleteForm.vue';
 import UpdateForm from '../components/UpdateForm.vue';
 import UserData from '../components/UserData.vue';
+=======
+import InsertData from '../components/InsertData.vue';
+>>>>>>> upstream/master
 import firebase from 'firebase/app';
 
 export default {
   name: "Account",
+<<<<<<< HEAD
   components: { AccountDetails, 
                 AccountUpdate, 
                 InsertForm,
                 DeleteForm,
                 UpdateForm,
                 UserData },
+=======
+  components: { AccountDetails, AccountUpdate, InsertData },
+>>>>>>> upstream/master
   
   setup() {
     const updateProfileCheck = ref(false);
     const insertCheck = ref(false);
+<<<<<<< HEAD
     const updateCheck = ref(false);
     const deleteCheck = ref(false);
     var systemMessage = ref("");
     var dataMessage = ref("");
+=======
+>>>>>>> upstream/master
     var db = firebase.firestore();
-    var user = reactive ({
-      firstName: "",
-      lastName: "",
-      email: "email@template.com",
-      institution: "",
-      telephone: "",
-      address: ""
+    const user = reactive ({
+      firstName: "name",
+      lastName: "lastname",
+      email: "email",
+      institution: "MMU",
+      telephone: "123456789",
+      address: "123 address street"
     })
 
     if (firebase.auth().currentUser !== null) {
@@ -111,11 +129,11 @@ export default {
 
     docRef.get().then((doc) => {
     if (doc.exists) {
-      user.firstName = doc.get("first");
-      user.lastName = doc.get("last");
-      user.institution = doc.get("institution");
-      user.telephone = doc.get("telephone");
-      user.address = doc.get("address");
+        user.firstName = doc.get("first");
+        user.lastName = doc.get("last");
+        user.institution = doc.get("institution");
+        user.telephont = doc.get("telephone");
+        user.address = doc.get("address");
     } else {
       // doc.data() will be undefined in this case
       console.log("No such document!");
@@ -124,8 +142,13 @@ export default {
       console.log("Error getting document:", error);
     });
 
+<<<<<<< HEAD
     function updateProfileBool() {
       updateProfileCheck.value = !updateProfileCheck.value;
+=======
+    function updateProfile() {
+      updateCheck.value = !updateCheck.value;
+>>>>>>> upstream/master
     }
 
     function insertData() {
@@ -152,6 +175,7 @@ export default {
       insertCheck.value = false;
     }
 
+<<<<<<< HEAD
     function detailsUpdatedMessage() {
       systemMessage.value = "Profile information updated!";
       updateProfileCheck.value = !updateProfileCheck.value;
@@ -203,6 +227,9 @@ export default {
              deleteData, 
              showData,
              dataMessage };
+=======
+    return { user, updateCheck, insertCheck, updateProfile, insertData };
+>>>>>>> upstream/master
   },
 }
 </script>

@@ -1,107 +1,122 @@
 <template>
-
-
+<div id="graphs">
    <div class="d-flex w-100 align-items-center justify-content-center welcome-box">
-      <h1 class="welcome-text"></h1>
+      <h1 class="welcome-text">Mutation Data</h1>
    </div>
 
    <!-- Data navigation bar -->
-   <div id="mutation-data-nav" class="full-width card">
-      <button type="button" class="data-button btn btn-primary" @click="showAllData()">Show all data</button>
-      <button type="button" class="data-button btn btn-primary" @click="filterData()">Filter mutation data</button>
-      <button type="button" class="data-button btn btn-primary" @click="graphType()">Graph Type</button>
-      <button type="button" class="data-button btn btn-primary" @click="graphType()">Show all data</button>
-      <button type="button" class="data-button btn btn-primary" @click="showAllData()">Show all data</button>
-      
-      <!-- Choose mutation 1 -->
-      <div class="form-group">
-            <label for="mutations">Mutation:</label>
-            <select class="form-control" name="mutations" id="cars">
-               <option value="myh7">MYH7</option>
-               <option value="tnnt7">TNNT7</option>
-            </select>
-      </div>
-
-      <!-- Choose mutation 2 -->
-      <div class="form-group">
-            <label for="mutations">Mutation:</label>
-            <select class="form-control" name="mutations" id="cars">
-               <option value="myh7">MYH7</option>
-               <option value="tnnt7">TNNT7</option>
-            </select>
-      </div>
+   <div id="mutation-data-nav" class="d-flex flex-wrap card">
+      <button type="button" class="data-button btn btn-primary" @click="allData()">Show All Data</button>
+      <button type="button" class="data-button btn btn-primary" @click="filterData()">Search Mutation</button>
+      <button type="button" class="data-button btn btn-primary" @click="compareData()">Compare Data</button>
+      <button type="button" class="data-button btn btn-primary" @click="externalData()">Get External Data</button>
+      <button type="button" class="data-button btn btn-primary" @click="showGraph()">Show Graph</button>
    </div>
 
    <!-- Data display -->
-   <div id="mutation-data" class="d-flex full-width card">
-
-      <div id="chart-box" class="card">
-         <apexchart width="500" type="bar" :options="options" :series="series"></apexchart>
+   <div id="mutation-data" class="d-flex card">
+      
+      <div v-if="returnType === 'all'">
+         <graphs-display></graphs-display>
       </div>
 
-    <h3>Chart Example</h3>
-   <Graph7a/>
-   <Graph8/>
-   <Graph7b/>
-   <Graph7c/>
+      <div v-if="returnType === 'filter'">
+         <FilterData/>
+      </div>
 
-   
+      <div v-if="returnType === 'graph'">
+         <ShowGraph/>
+      </div>
 
-   
+      <div v-if="returnType === 'compare'">
+
+         <!-- Add hard coded graph components here for comparison -->
+         <Graph7a/>
+         <Graph8/>
+         <Graph7b/>
+         <Graph7c/>
+      </div>
+
+      <div v-if="returnType === 'external'">
+         <api-data></api-data>
+      </div>
+   </div>
 </div>
 </template>
 
 <script>
-
-import Graph8 from "@/components/Graph8a";
-import Graph7a from "@/components/Graph7a"
-import Graph7b from "@/components/Graph7b"
-import Graph7c from "@/components/Graph7c"
-
-
+import { ref } from 'vue';
+import GraphsDisplay from "../components/GraphsDisplay";
+import Graph8 from "../components/Graph8";
+import Graph7a from "../components/Graph7a"
+import Graph7b from "../components/Graph7b"
+import Graph7c from "../components/Graph7c"
+import ApiData from "../components/ApiData";
+import ShowGraph from "../components/ShowGraph";
+import FilterData from "../components/FilterData";
 
 export default {
    name: "Graphs",
-   components: {
-   Graph7a,
-   Graph7b,
-   Graph7c,
-   Graph8
-   },
-    
-  
-   
-
+   components: { GraphsDisplay,
+                 Graph7a,
+                 Graph8,
+                 Graph7b,
+                 Graph7c,
+                 ApiData,
+                 ShowGraph,
+                 FilterData },
+ 
    setup () {
+      const returnType = ref("all");
 
-      function showAllData() {
-         return 1;
+      function allData() {
+         returnType.value = "all";
       }
 
-      return { showAllData }
+      function filterData() {
+         returnType.value = "filter";   
+      }
+
+      function showGraph() {
+         returnType.value = "graph";   
+      }
+
+      function compareData() {
+         returnType.value = "compare";
+      }
+
+      function externalData() {
+         returnType.value = "external";
+      }
+
+      return { returnType, 
+               allData,
+               filterData,
+               compareData,
+               externalData,
+               showGraph }
    },
 }
 </script>
 
 <style>
+
 body {
   font-family: Roboto, sans-serif;
 }
 
-#chart {
-  max-width: 40%;
-  min-width: 20%;
-  margin: 35px auto;
-  align-items: center;
-}
-
 #mutation-data-nav {
    padding: 10px;
+   width: 99%;
+   margin: 0.5%;
 }
 
 #mutation-data {
    min-height: 55vh;
+   width: 99%;
+   margin: 0.5%;
 }
+
 .left {
   display: flex;
   justify-content: left;
@@ -114,10 +129,6 @@ body {
    width: 20%;
 }
 
-.full-width {
-   width: 99%;
-   margin: 0.5%;
-}
 
 #graphs {
    min-height: 100vh;

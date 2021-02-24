@@ -24,7 +24,7 @@
                 <label for="mutation">Mutation*:</label>
                 <select class="form-control" name="mutation" v-model="mutation" id="mutation">
                     <option value="myh7">MYH7</option>
-                    <option value="tnnt7">TNNT7</option>
+                    <option value="tnnt2">TNNT2</option>
                 </select>
             </div>
 

@@ -211,6 +211,10 @@ export default {
 
 <style>
 
+.card {
+  width: 100%;
+}
+
 .card-heading {
   font-size: 30px;
   margin-bottom: 20px; 
@@ -218,7 +222,7 @@ export default {
 
 .welcome-box {
   height: 15vh;
-  background-color: #c4c4c4;
+  background-color: #f2f2f2;
   color: black;
 }
 

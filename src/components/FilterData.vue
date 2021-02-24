@@ -1,16 +1,20 @@
 <template>
-    <div id="userData">
-
-        <!-- If there is no data in the 'experimentalData' array, show user a note that there's no data -->
-        <div v-if="experimentalData.length === 0">
-            <p>You have experimental data!</p>
+    <div id="filterData">
+        <!-- Choose mutation for filtering -->
+        <div class="form-group">
+            <label for="mutation">Select Mutation Type:</label>
+            <select class="form-control" name="mutation" v-model="mutation" id="mutation">
+                <option value="myh7">MYH7</option>
+                <option value="tnnt2">TNNT2</option>
+            </select>
+            <button id="search-button" type="button" class="data-button btn btn-primary" @click="search()">Search</button>
         </div>
 
         <!-- If there is any data in the 'experimentalData' array, show it to the user -->
         <div v-if="experimentalData.length > 0">
             <div v-for="item in experimentalData" :key="item.index">
                 <div class="d-flex align-content-start flex-wrap card">
-                    <div class="data-card"><b>Document ID:</b>{{ item.id }}</div>
+                    <div class="data-card"><b>Document ID:</b>{{ item.id }} by <i>{{ item.email }}</i></div>
                     <div class="d-flex data-card"><b>Data set name:</b>{{ item.name }}</div>
                     <div class="d-flex data-card"><b>Data mutation sort:</b>{{ item.mutation }}</div>
                     <div class="d-flex data-card"><b>Data description:</b>{{ item.description }}</div>
@@ -36,21 +40,22 @@ import { ref, reactive } from 'vue';
 import firebase from 'firebase/app';
 
 export default {
-    name: "UserData",
+    name: "FilterData",
 
     setup() {
-        const email = ref("");
+        const mutation = ref("");
         var db = firebase.firestore();
         var experimentalData = reactive ([]);
 
-        //if there is a user logged in, get the email and store it in email variable
-        if (firebase.auth().currentUser !== null) {
-            email.value = firebase.auth().currentUser.email;
-        }
+        function search() {
+            
+            experimentalData.splice(0,experimentalData.length);
 
-        //check if the email field is not empty
-        if (email.value !== null && email.value !== "") {
-            db.collection("graphs").where("email", "==", email.value)
+            const search = reactive({
+                searchValue: mutation.value,
+            })
+
+            db.collection("graphs").where("mutation", "==", search.searchValue)
             .get()
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
@@ -79,6 +84,7 @@ export default {
                         description: doc.get("description"),
                         mutation: doc.get("mutation"),
                         name: doc.get("name"),
+                        email: doc.get("email"),
                         type: graphType.value,
                         x1: doc.get("x1"),
                         x2: doc.get("x2"),
@@ -105,14 +111,18 @@ export default {
             });
         }
 
-
-
-        return { experimentalData }
+        return { experimentalData, mutation, search }
     }
 }
 </script>
 
 <style>
+
+#search-button {
+    width: 20%;
+    margin-top: 15px;
+}
+
 .data-card {
     width: 100%;
 }

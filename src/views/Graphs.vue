@@ -1,70 +1,102 @@
 <template>
-
-
    <div class="d-flex w-100 align-items-center justify-content-center welcome-box">
-      <h1 class="welcome-text"></h1>
+      <h1 class="welcome-text">Mutation Data for MYH7 and TNNT2</h1>
    </div>
 
    <!-- Data navigation bar -->
-   <div id="mutation-data-nav" class="full-width card">
-      <button type="button" class="data-button btn btn-primary" @click="showAllData()">Show all data</button>
-      <button type="button" class="data-button btn btn-primary" @click="filterData()">Filter mutation data</button>
-      <button type="button" class="data-button btn btn-primary" @click="graphType()">Graph Type</button>
-      <button type="button" class="data-button btn btn-primary" @click="graphType()">Show all data</button>
-      <button type="button" class="data-button btn btn-primary" @click="showAllData()">Show all data</button>
+   <div id="mutation-data-nav" class="d-flex flex-wrap full-width card">
+      <button type="button" class="data-button btn btn-primary" @click="allData()">Show All Data</button>
+      <button type="button" class="data-button btn btn-primary" @click="filterData()">Search Mutation</button>
+      <button type="button" class="data-button btn btn-primary" @click="compareData()">Compare Data</button>
+      <button type="button" class="data-button btn btn-primary" @click="externalData()">Get External Data</button>
+      <button type="button" class="data-button btn btn-primary" @click="showGraph()">Show Graph</button>
       
-      <!-- Choose mutation 1 -->
+      <!-- Graph ID field -->
       <div class="form-group">
-            <label for="mutations">Mutation:</label>
-            <select class="form-control" name="mutations" id="cars">
-               <option value="myh7">MYH7</option>
-               <option value="tnnt7">TNNT7</option>
-            </select>
+         <label for="id">Show Graph From Document:</label>
+         <input type="text" class="form-control" v-model="id" id="id" placeholder="Document ID">
       </div>
 
-      <!-- Choose mutation 2 -->
+      <!-- Choose mutation for filtering -->
       <div class="form-group">
-            <label for="mutations">Mutation:</label>
-            <select class="form-control" name="mutations" id="cars">
-               <option value="myh7">MYH7</option>
-               <option value="tnnt7">TNNT7</option>
-            </select>
+         <label for="mutation">Select Mutation Type:</label>
+         <select class="form-control" name="mutation" v-model="mutation" id="mutation">
+            <option value="myh7">MYH7</option>
+            <option value="tnnt2">TNNT2</option>
+         </select>
       </div>
+
    </div>
 
    <!-- Data display -->
    <div id="mutation-data" class="d-flex full-width card">
-
-      <div id="chart-box" class="card">
-         <apexchart width="500" type="bar" :options="options" :series="series"></apexchart>
+      
+      <div v-if="returnType === 'all'">
+         <graphs-display></graphs-display>
       </div>
-<div id="Chart">
-    <h3>Chart Example</h3>
-    <line-chart class="center"></line-chart>
-</div>
-   
-   
-</div>
+
+      <div v-if="returnType === 'filter'">
+      </div>
+
+      <div v-if="returnType === 'graph'">
+         <ShowGraph/>
+      </div>
+
+      <div v-if="returnType === 'compare'">
+
+         <!-- Add hard coded graph components here for comparison -->
+         <graph7a></graph7a>
+      </div>
+
+      <div v-if="returnType === 'external'">
+         <api-data></api-data>
+      </div>
+   </div>
 </template>
 
 <script>
-
-import LineChart from "@/components/LineChart";
-
-
+import { ref } from 'vue';
+import GraphsDisplay from "../components/GraphsDisplay";
+import graph7a from "../components/graph7a";
+import ApiData from "../components/ApiData";
+import ShowGraph from "../components/ShowGraph";
 
 export default {
    name: "Graphs",
-   components: { LineChart },
-   
-
+   components: { GraphsDisplay,
+                 graph7a,
+                 ApiData,
+                 ShowGraph },
+ 
    setup () {
+      const returnType = ref("all");
 
-      function showAllData() {
-         return 1;
+      function allData() {
+         returnType.value = "all";
       }
 
-      return { showAllData }
+      function filterData() {
+         returnType.value = "filter";   
+      }
+
+      function showGraph() {
+         returnType.value = "graph";   
+      }
+
+      function compareData() {
+         returnType.value = "compare";
+      }
+
+      function externalData() {
+         returnType.value = "external";
+      }
+
+      return { returnType, 
+               allData,
+               filterData,
+               compareData,
+               externalData,
+               showGraph }
    },
 }
 </script>

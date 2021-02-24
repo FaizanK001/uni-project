@@ -73,7 +73,7 @@ export default {
                     } else {
                         graphType.value = "Graph type undefined!"
                     }
-
+                    
                     const data = reactive ({
                         id: doc.id,
                         description: doc.get("description"),

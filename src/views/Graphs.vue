@@ -45,7 +45,10 @@
       <div v-if="returnType === 'compare'">
 
          <!-- Add hard coded graph components here for comparison -->
-         <graph7a></graph7a>
+         <Graph7a/>
+         <Graph8/>
+         <Graph7b/>
+         <Graph7c/>
       </div>
 
       <div v-if="returnType === 'external'">
@@ -57,14 +60,20 @@
 <script>
 import { ref } from 'vue';
 import GraphsDisplay from "../components/GraphsDisplay";
-import graph7a from "../components/graph7a";
+import Graph8 from "../components/Graph8a";
+import Graph7a from "../components/Graph7a"
+import Graph7b from "../components/Graph7b"
+import Graph7c from "../components/Graph7c"
 import ApiData from "../components/ApiData";
 import ShowGraph from "../components/ShowGraph";
 
 export default {
    name: "Graphs",
    components: { GraphsDisplay,
-                 graph7a,
+                 Graph7a,
+                 Graph8,
+                 Graph7b,
+                 Graph7c,
                  ApiData,
                  ShowGraph },
  
@@ -110,6 +119,7 @@ body {
   max-width: 40%;
   min-width: 20%;
   margin: 35px auto;
+  align-items: center;
 }
 
 #mutation-data-nav {
@@ -138,5 +148,9 @@ body {
 
 #graphs {
    min-height: 100vh;
+}
+
+.card{
+   float: left;
 }
 </style>

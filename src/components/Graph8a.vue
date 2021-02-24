@@ -6,48 +6,32 @@
       width="500"
       :options="chartOptions"
       :series="series"
-      
-    ></apexchart>
-  </div>
-  <div>
-  <span> {{x}}</span>
+      ></apexchart>
   </div>
 </template>
 
 <script>
-import { ref } from "vue";
+import {  ref } from "vue";
 import {firebaseFireStore} from "@/firebase/database";
 
 export default {
+
   setup() {
 
 
-const MYBPC3 = ref(null);
-const TNNI3 = ref(null);
-const Donor = ref(null);
-const smn = ref(null);
-const TNNT2 = ref(null);
-const MYH7 = ref(null);
-const test = ref();
-const x = ref(null);
 
-
+var x =ref([]);
       firebaseFireStore
       .collection("researchData")
       .doc("Figure 8")
       .get()
       .then((snapshot)=>{ 
-         [x].value = snapshot.data().X;
-         TNNI3.value = snapshot.data().TNNI3;
-         Donor.value = snapshot.data().Donor;
-         smn.value = snapshot.data().smn;
-         MYH7.value = snapshot.data().MYH7;
-         TNNT2.value = snapshot.data().TNNT2;
-         MYBPC3.value = snapshot.data().MYBPC3;
-         test.value = snapshot.data().test;
+        
+         
+         x.value = snapshot.data().MYBPC3;
+         
+         
       })
-
-      
       
     const chartOptions = ref({
       chart: {
@@ -76,8 +60,7 @@ const x = ref(null);
       },
       xaxis: {
         logarithmic: true,
-        categories:  x ,
-        data: x,
+        categories: [ 1, 1.6, 2.5, 4, 6.5, 10, 16.5, 26.5, 32 ],
         title: {
           text: "[Ca^2+](umol/L)",
         },
@@ -95,11 +78,11 @@ const x = ref(null);
         offsetX: -5,
       },
     });
-
+//chartOptions.value.xaxis.categories.push(x);
     const series = ref([
       {
         name: "MYBPC3",
-        data: ref(test),
+        data: [ 8.7738, 13.1713, 16.2, 17.842, 18.8086, 19.338, 19.6064, 19.6615, 19.7146 ],
       },
       {
         name: "TNNI3",
@@ -124,7 +107,7 @@ const x = ref(null);
     
     ]);
 
-    return { chartOptions, series,x,MYH7,MYBPC3,Donor,TNNI3,TNNT2,smn,test};
+    return { chartOptions, series,x};
   },
 };
 </script>

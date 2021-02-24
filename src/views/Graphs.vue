@@ -10,7 +10,7 @@
       <button type="button" class="data-button btn btn-primary" @click="filterData()">Search Mutation</button>
       <button type="button" class="data-button btn btn-primary" @click="compareData()">Compare Data</button>
       <button type="button" class="data-button btn btn-primary" @click="externalData()">Get External Data</button>
-      <button type="button" class="data-button btn btn-primary" @click="showGraph()">Show Graph</button>
+      <!--<button type="button" class="data-button btn btn-primary" @click="showGraph()">Show Graph</button>-->
    </div>
 
    <!-- Data display -->

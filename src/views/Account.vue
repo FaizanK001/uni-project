@@ -18,7 +18,7 @@
           <!-- User profile display -->
           <div v-if="updateProfileCheck === false">
             <account-details :user=user></account-details>
-            <button type="button" class="btn btn-primary" @click="updateProfileBool()">Update details</button>
+            <button type="button" class="btn btn-primary" @click="updateProfileBool()">Update Details</button>
           </div>
 
           <!-- Profile update display -->
@@ -30,7 +30,7 @@
         <!-- Display user options -->
         <div class="border-padding card">
           <h1 class="card-heading">Manage Data</h1>
-          <button type="button" class="btn btn-primary" @click="showData()">Show my data</button>
+          <button type="button" class="btn btn-primary" @click="showData()">Show My Data</button>
           <button type="button" class="btn btn-primary" @click="updateData()">{{ updateCheck ? 'Cancel Updating Data' : 'Update Data' }}</button>
           <button type="button" class="btn btn-primary" @click="insertData()">{{ insertCheck ? 'Cancel Inserting Data' : 'Insert Data' }}</button>
           <button type="button" class="btn btn-primary" @click="deleteData()">{{ deleteCheck ? 'Cancel Deleting Data' : 'Delete Data' }}</button>

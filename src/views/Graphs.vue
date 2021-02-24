@@ -38,24 +38,38 @@
       <div id="chart-box" class="card">
          <apexchart width="500" type="bar" :options="options" :series="series"></apexchart>
       </div>
-<div id="Chart">
+
     <h3>Chart Example</h3>
-    <line-chart class="center"></line-chart>
-</div>
+   <Graph7a/>
+   <Graph8/>
+   <Graph7b/>
+   <Graph7c/>
+
    
+
    
 </div>
 </template>
 
 <script>
 
-import LineChart from "@/components/LineChart";
+import Graph8 from "@/components/Graph8a";
+import Graph7a from "@/components/Graph7a"
+import Graph7b from "@/components/Graph7b"
+import Graph7c from "@/components/Graph7c"
 
 
 
 export default {
    name: "Graphs",
-   components: { LineChart },
+   components: {
+   Graph7a,
+   Graph7b,
+   Graph7c,
+   Graph8
+   },
+    
+  
    
 
    setup () {
@@ -78,6 +92,7 @@ body {
   max-width: 40%;
   min-width: 20%;
   margin: 35px auto;
+  align-items: center;
 }
 
 #mutation-data-nav {
@@ -106,5 +121,9 @@ body {
 
 #graphs {
    min-height: 100vh;
+}
+
+.card{
+   float: left;
 }
 </style>

@@ -1,41 +1,27 @@
 <template>
+<div id="graphs">
    <div class="d-flex w-100 align-items-center justify-content-center welcome-box">
-      <h1 class="welcome-text">Mutation Data for MYH7 and TNNT2</h1>
+      <h1 class="welcome-text">Mutation Data</h1>
    </div>
 
    <!-- Data navigation bar -->
-   <div id="mutation-data-nav" class="d-flex flex-wrap full-width card">
+   <div id="mutation-data-nav" class="d-flex flex-wrap card">
       <button type="button" class="data-button btn btn-primary" @click="allData()">Show All Data</button>
       <button type="button" class="data-button btn btn-primary" @click="filterData()">Search Mutation</button>
       <button type="button" class="data-button btn btn-primary" @click="compareData()">Compare Data</button>
       <button type="button" class="data-button btn btn-primary" @click="externalData()">Get External Data</button>
       <button type="button" class="data-button btn btn-primary" @click="showGraph()">Show Graph</button>
-      
-      <!-- Graph ID field -->
-      <div class="form-group">
-         <label for="id">Show Graph From Document:</label>
-         <input type="text" class="form-control" v-model="id" id="id" placeholder="Document ID">
-      </div>
-
-      <!-- Choose mutation for filtering -->
-      <div class="form-group">
-         <label for="mutation">Select Mutation Type:</label>
-         <select class="form-control" name="mutation" v-model="mutation" id="mutation">
-            <option value="myh7">MYH7</option>
-            <option value="tnnt2">TNNT2</option>
-         </select>
-      </div>
-
    </div>
 
    <!-- Data display -->
-   <div id="mutation-data" class="d-flex full-width card">
+   <div id="mutation-data" class="d-flex card">
       
       <div v-if="returnType === 'all'">
          <graphs-display></graphs-display>
       </div>
 
       <div v-if="returnType === 'filter'">
+         <FilterData/>
       </div>
 
       <div v-if="returnType === 'graph'">
@@ -55,17 +41,19 @@
          <api-data></api-data>
       </div>
    </div>
+</div>
 </template>
 
 <script>
 import { ref } from 'vue';
 import GraphsDisplay from "../components/GraphsDisplay";
-import Graph8 from "../components/Graph8a";
+import Graph8 from "../components/Graph8";
 import Graph7a from "../components/Graph7a"
 import Graph7b from "../components/Graph7b"
 import Graph7c from "../components/Graph7c"
 import ApiData from "../components/ApiData";
 import ShowGraph from "../components/ShowGraph";
+import FilterData from "../components/FilterData";
 
 export default {
    name: "Graphs",
@@ -75,7 +63,8 @@ export default {
                  Graph7b,
                  Graph7c,
                  ApiData,
-                 ShowGraph },
+                 ShowGraph,
+                 FilterData },
  
    setup () {
       const returnType = ref("all");
@@ -111,24 +100,23 @@ export default {
 </script>
 
 <style>
+
 body {
   font-family: Roboto, sans-serif;
 }
 
-#chart {
-  max-width: 40%;
-  min-width: 20%;
-  margin: 35px auto;
-  align-items: center;
-}
-
 #mutation-data-nav {
    padding: 10px;
+   width: 99%;
+   margin: 0.5%;
 }
 
 #mutation-data {
    min-height: 55vh;
+   width: 99%;
+   margin: 0.5%;
 }
+
 .left {
   display: flex;
   justify-content: left;
@@ -141,10 +129,6 @@ body {
    width: 20%;
 }
 
-.full-width {
-   width: 99%;
-   margin: 0.5%;
-}
 
 #graphs {
    min-height: 100vh;

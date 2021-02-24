@@ -99,9 +99,6 @@ export default {
 
 <style>
 
-
-
-
 .my-custom-scrollbar {
 position: relative;
 height: 200px;
@@ -110,7 +107,6 @@ overflow: auto;
 .table-wrapper-scroll-y {
 display: block;
 }
-
 
 /* Create two unequal columns that floats next to each other */
 /* Left column */

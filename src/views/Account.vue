@@ -211,6 +211,10 @@ export default {
 
 <style>
 
+.card {
+  width: 100%;
+}
+
 .card-heading {
   font-size: 30px;
   margin-bottom: 20px; 

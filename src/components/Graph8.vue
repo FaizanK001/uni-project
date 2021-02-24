@@ -60,7 +60,7 @@ var x =ref([]);
       },
       xaxis: {
         logarithmic: true,
-        categories: [ 1, 1.6, 2.5, 4, 6.5, 10, 16.5, 26.5, 32 ],
+        categories: [ '1', '1.6', '2.5', '4', '6.5', '10', '16.5', '26.5', '32' ],
         title: {
           text: "[Ca^2+](umol/L)",
         },

@@ -46,7 +46,7 @@ export default {
       },
       xaxis: {
         logarithmic: true,
-        categories: [8,7.51892,7.09363,6.8436,6.50231,5.97437,5.38257,4.5],
+        categories: ['8','7.51','7.09','6.84','6.50','5.97','5.38','4.5'],
         title: {
           text: "pCa",
         },

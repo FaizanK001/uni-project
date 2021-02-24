@@ -31,7 +31,7 @@
 
     <div class="form-group">
         <button type="button" class="btn btn-primary" @click="cancel()">Cancel</button>
-        <button type="button" class="btn btn-primary" @click="updateUser()">Save details</button>
+        <button type="button" class="btn btn-primary" @click="updateUser()">Save Details</button>
     </div>
 </form>
 </template>

@@ -9,20 +9,22 @@
         <div class="container">
           <div class="row">
             <div class="col-md-9 col-lg-8 mx-auto">
-              <h3 class="login-heading mb-4">Welcome back!</h3>
+              <h3 class="login-heading mb-4">Enter your login details</h3>
               <form @submit.prevent>
+
+                <div v-if="errorLogin !== ''" class="alert alert-danger" role="alert">
+                    <strong>Warning!</strong> {{ errorLogin }}
+                </div>
+
                 <div class="form-label-group">
-                  <input type="email" v-model="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-                  <label for="inputEmail">Email address</label>
+                  <input type="email" v-model="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
+                  <label for="inputEmail">Email</label>
                 </div>
 
                 <div class="form-label-group">
                   <input type="password" v-model="password"  id="inputPassword" class="form-control" placeholder="Password" required>
                   <label for="inputPassword">Password</label>
                 </div>
-                
-                <div v-if="errorFirebase" class="errorFirebase">{{errorFirebase}}</div>
-               
 
                 <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" @click="login">Sign in</button>
 
@@ -44,43 +46,48 @@
 import {ref} from "vue";
 import {firebaseAuthentication} from "../firebase/database";
 import {useRouter} from "vue-router";
+
 export default {
-  name: "login",
-  emits: ["login-clicked"],
- setup() {
-  const email = ref("");
-  const password = ref("");
-  const errorFirebase = ref("");
+    name: "login",
+    emits: ["login-clicked"],
+    setup() {
+      const email = ref("");
+      const password = ref("");
+      const router = useRouter();
+      const errorLogin = ref("");
 
-  const router =useRouter();
+      function login(){
+        const info = {
+          email: email.value,
+          password: password.value,
+        };
+        firebaseAuthentication.signInWithEmailAndPassword(info.email,info.password)
+        .then(()=>{
+          router.push("/"); 
+        }, error =>{
+          errorLogin.value = error.message;
+          
+        });
+      }
+      
+      function ForgotPassword(){
+        if(confirm(`Would you like to reset the password: ${this.email}`)){
+          firebaseAuthentication.sendPasswordResetEmail(this.email).then(()=>{
+            alert(
+              "An Email has be sent to rest password"
+            );
+          })
+          .catch((error) => alert(error.message))
+        }
+      }
 
-  function login(){
-    const info = {
-      email: email.value,
-      password: password.value,
-    };
-    firebaseAuthentication.signInWithEmailAndPassword(info.email,info.password)
-    .then(()=>{
-      router.push("/"); 
-    }, error =>{
-      errorFirebase.value =error.message;
-    });
-  }
-
-  function ForgotPassword(){
-    if(confirm(`Would you like to reset the password: ${this.email}`)){
-      firebaseAuthentication.sendPasswordResetEmail(this.email).then(()=>{
-        alert(
-          "An Email has be sent to rest password"
-        );
-      })
-      .catch((error) => alert(error.message))
-    }
-  }
-
-return{email, password, errorFirebase, login, ForgotPassword};
-  
-},
+      return{ email, 
+              password, 
+              login,
+              errorLogin,
+              ForgotPassword};
+    
+    },
 };
 </script>
 
@@ -109,8 +116,8 @@ return{email, password, errorFirebase, login, ForgotPassword};
 .btn-login {
   font-size: 0.9rem;
   letter-spacing: 0.05rem;
+  margin-left: 0px;
   padding: 0.75rem 1rem;
-  border-radius: 2rem;
 }
 
 .form-label-group {
@@ -122,7 +129,7 @@ return{email, password, errorFirebase, login, ForgotPassword};
 .form-label-group>label {
   padding: var(--input-padding-y) var(--input-padding-x);
   height: auto;
-  border-radius: 2rem;
+  border-radius: 3px;
 }
 
 .form-label-group>label {

@@ -1,12 +1,12 @@
 <template>
-  <div id="register">
+<div id="register">
     <div class="container">
         <div class="row py-5 mt-4 align-items-center">
             <!-- For Demo Purpose -->
             <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
                 <img src="https://res.cloudinary.com/mhmd/image/upload/v1569543678/form_d9sh6m.svg" alt="" class="img-fluid mb-3 d-none d-md-block">
-                <h1>Create an Account</h1>
-                <p class="font-italic text-muted mb-0">Create a minimal registeration page using Bootstrap 4 HTML form elements.</p>
+                <h1>New User Registration</h1>
+                <p class="font-italic text-muted mb-0">Register an account to access additional features on our website!</p>
                 <p class="font-italic text-muted">Snippet By <a href="https://bootstrapious.com" class="text-muted">
                     <u>Bootstrapious</u></a>
                 </p>
@@ -119,17 +119,6 @@
                             <div class="border-bottom w-100 mr-5"></div>
                         </div>
 
-                        <!-- Social Login -->
-                        <div class="form-group col-lg-12 mx-auto">
-                            <a href="#" class="btn btn-primary btn-block py-2 btn-facebook">
-                                <i class="fa fa-facebook-f mr-2"></i>
-                                <span class="font-weight-bold">Continue with Facebook</span>
-                            </a>
-                            <a href="#" class="btn btn-primary btn-block py-2 btn-twitter">
-                                <i class="fa fa-twitter mr-2"></i>
-                                <span class="font-weight-bold">Continue with Twitter</span>
-                            </a>
-                        </div>
 
                         <!-- Already Registered -->
                         <div class="text-center w-100">
@@ -141,7 +130,7 @@
             </div>
         </div>
     </div>
-  </div>
+</div>
 </template>
 
 <script>
@@ -167,6 +156,7 @@ export default {
         const router = useRouter();
         var db = firebase.firestore();
 
+        //check whether the password confirmation input matches the password input
         watch(passwordConfirmation, ()=>{
             if(password.value !== "" && passwordConfirmation.value!== "" && password.value !== passwordConfirmation.value){
                 errorRegistration.value ="Passwords do not match!";
@@ -175,6 +165,7 @@ export default {
         }
         });
 
+        //register a new user into the database
         function register(){
             const info = {
                 firstName: firstName.value,
@@ -185,6 +176,8 @@ export default {
                 telephone: telephone.value,
                 address: address.value,
             };
+
+            //if relevant details have been inserted, create a user Authorisation profile together with new user document
             if (!errorRegistration.value && info.email !== "") {
                 firebaseAuthentication.createUserWithEmailAndPassword(info.email,info.password)
                 .then(()=>{
@@ -237,24 +230,5 @@ export default {
  .border-md {
     border-width: 2px;
 }
-
-.btn-facebook {
-    background: #405D9D;
-    border: none;
-}
-
-.btn-facebook:hover, .btn-facebook:focus {
-    background: #314879;
-}
-
-.btn-twitter {
-    background: #42AEEC;
-    border: none;
-}
-
-.btn-twitter:hover, .btn-twitter:focus {
-    background: #1799e4;
-}
-
 
 </style>

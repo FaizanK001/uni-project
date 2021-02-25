@@ -1,6 +1,6 @@
 <template>
     <div id="externalData">
-        <h1>External Data</h1>
+        <h1>External Data from <a href="https://hpo.jax.org">Human Phenotype Ontology</a></h1>
        
        <div v-for="item in disease.catTermsMap" :key="item.id">
                 <div class="d-flex align-content-start flex-wrap card">

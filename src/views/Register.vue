@@ -181,7 +181,7 @@ export default {
             if (!errorRegistration.value && info.email !== "") {
                 firebaseAuthentication.createUserWithEmailAndPassword(info.email,info.password)
                 .then(()=>{
-                    router.replace("login");
+                    router.replace("/");
                 },
                 (error) => {
                     errorRegistration.value = error.message;

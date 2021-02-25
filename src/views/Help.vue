@@ -5,11 +5,9 @@
     </div>
 
     <div class="help-card">
-    <h2>What is the Cardiomyopathies website about?</h2>
-    <p>The website is meant to act as a database for different experimental data centered around cardiomyopathic mutations such as MYH7, which we focus
-       on, TNNT2, which is our secondary focus, and also any other mutation that is suitable to be stored in the system. We aim to let researchers connect,
-       store, and view the data that they require, as well as continue developing more features to help facilitate this research.
-    </p>
+   <h2> <span id="heading">{{heading}}</span></h2>
+   <p> <span id="text">{{text}}</span></p>
+
     </div>
 
     <div class="help-card">
@@ -68,7 +66,14 @@ export default {
   name: 'Help',
   components: {
   
-  }
+  },
+
+  data() {
+      return {
+        heading: 'What is this Cardiomyopathy website about?',
+        text: 'The website is meant to act as a database for different experimental data centered around cardiomyopathic mutations such as MYH7, which we focus on, TNNT2, which is our secondary focus, and also any other mutation that is suitable to be stored in the system. We aim to let researchers connect, store, and view the data that they require, as well as continue developing more features to help facilitate this research.'
+      }
+    }
 }
 </script>
 

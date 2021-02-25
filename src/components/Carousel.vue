@@ -10,10 +10,10 @@
   <!-- The slideshow -->
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="../assets/cdmp-banner.png" >
+      <img src="../assets/cdmp-banner.png" class="image1" >
     </div>
     <div class="carousel-item">
-      <img src="../assets/heart-health-banner.jpg"   >
+      <img src="../assets/heart-health-banner.jpg" >
     </div>
   </div>
   

@@ -6,11 +6,11 @@
 
    <!-- Data navigation bar -->
    <div id="mutation-data-nav" class="d-flex flex-wrap justify-content-center">
-      <button type="button" class="data-button btn btn-primary" @click="allData()">Show All Data</button>
-      <button type="button" class="data-button btn btn-primary" @click="filterData()">Search Mutation</button>
-      <button type="button" class="data-button btn btn-primary" @click="compareData()">Compare Data</button>
-      <button type="button" class="data-button btn btn-primary" @click="externalData()">Get External Data</button>
-      <button type="button" class="data-button btn btn-primary" @click="showGraph()">Show Graph</button>
+      <button type="button" class="data-button btn btn-primary" v-on:click="allData()">Show All Data</button>
+      <button type="button" class="data-button btn btn-primary" v-on:click="filterData()">Search Mutation</button>
+      <button type="button" class="data-button btn btn-primary" v-on:click="compareData()">Compare Data</button>
+      <button type="button" class="data-button btn btn-primary" v-on:click="externalData()">Get External Data</button>
+      <button type="button" class="data-button btn btn-primary" v-on:click="showGraph()">Show Graph</button>
       <!--<button type="button" class="data-button btn btn-primary" @click="showGraph()">Show Graph</button>-->
    </div>
 

@@ -23,15 +23,29 @@
     <h2>6. How do I use Cardiomyopathies website ?</h2>
     <ul> 
     <li>First you will need to create an account if you have one please sign-in, if you are new user then you can sign-up for free. </li>
-    <li>Second you can click on the upload data to start upload your data to the website, you can delete or update this data at any time you want.</li>
-    <li>Third, to change password you can do that by clicking on the account then change password.</li>
+    <li>Second, once you are log-in you can start uploading, viewing, deleting data</li>
     </ul>
 
     <h2>7. How do I use the Graphic on the Cardiomyopathies website ?</h2>
-    <p>You can use the graphic once you upload your data. The main reason of using graphic because it make it easy to understand your data. 
-    </p>
-  </div>
+    <p>You can use the graphic once you upload your data from the Account Page. In the Graph Page there were 4 Button such:</p>
+    <ul> 
+    <li>1.Show All Data Button, this will allow the user to see the data</li>
+    <li>2.Search Mutation Button, this will allow the user to chose which data they want to see between MYH7 and TNNT2.</li>
+    <li>3.Compare Data Button, it will compare the data that stored into the database and then display it as Graph</li>
+    </ul>
 
+    <h2>8. How do I use Account Page ?</h2>
+    <p>You will be able to see the Account Page once you have sign in, then you will have 5 Buttons such as:</p>
+    <ul> 
+    <li>1.Update Button allow the user to update your details. </li>
+    <li>2.Insert Data Button, which is allow the user to insert data and stored into the database such as data name, mutation, description and graph.</li>
+    <li>3.Show My Data Button, this will allow the user to see your existing data if you have one stored </li>
+    <li>4.Update Data Button, this will allow the user to update your old data.</li>
+    <li>5.Delect Data Button, allow the user to delect their data from the database</li>
+    </ul>
+  
+  </div>
+  <br>
 </template>
 
 <script>
@@ -65,6 +79,8 @@ h2 {
     margin-left: 230px;
     font-size: 27px;
     color:red;
+    padding-bottom: 10px;
+    padding-top: 20px;
 }
 
 p {
@@ -76,7 +92,7 @@ p {
 
 ul{
     text-align:left;
-    margin-left: 250px;
+    margin-left: 280px;
     font-size: 17px;
 }
 

@@ -121,8 +121,8 @@
 
 
                         <!-- Already Registered -->
-                        <div class="text-center w-100">
-                            <p class="text-muted font-weight-bold">Already Registered? <router-link to="/login" class="text-primary ml-2">Login</router-link></p>
+                        <div class="w-100">
+                            <p class="text-muted font-weight-bold text-center-box">Already Registered? <router-link to="/login" class="text-primary ml-2">Login</router-link></p>
                         </div>
 
                     </div>
@@ -227,8 +227,12 @@ export default {
     min-height: 100vh;
 }
 
- .border-md {
+.border-md {
     border-width: 2px;
+}
+
+.text-center-box {
+    text-align: center;
 }
 
 </style>

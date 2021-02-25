@@ -33,7 +33,7 @@
 
          <!-- Add hard coded graph components here for comparison -->
          <div class="d-flex graph-card">
-            <Graph7a class="graph-styling"/>
+            <graph7a class="graph-styling"/>
             <div class="graph-description">
                <h1 class="graph-title">Force-pCa relations of converter mutations vs. control (A)</h1>
                <p class="graph-text"><b>Mutation:</b> MYH7</p>
@@ -96,7 +96,7 @@
 import { ref } from 'vue';
 import GraphsDisplay from "../components/GraphsDisplay";
 import Graph8 from "../components/Graph8";
-import Graph7a from "../components/Graph7a"
+import graph7a from "../components/graph7a"
 import Graph7b from "../components/Graph7b"
 import Graph7c from "../components/Graph7c"
 import ApiData from "../components/ApiData";
@@ -106,7 +106,7 @@ import FilterData from "../components/FilterData";
 export default {
    name: "Graphs",
    components: { GraphsDisplay,
-                 Graph7a,
+                 graph7a,
                  Graph8,
                  Graph7b,
                  Graph7c,

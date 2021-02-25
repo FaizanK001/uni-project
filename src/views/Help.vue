@@ -1,7 +1,8 @@
 <template>
   <div id="help">
-
-    <h3>How Can We Help </h3>
+    <div class="d-flex w-100 align-items-center justify-content-center welcome-box">
+      <h1 class="welcome-text">How to use our website</h1>
+   </div>
 
     <h2>1.What personally identifiable information is collected from the user?</h2>
     <p>Cardiomyopathies will only collect personally identifiable information such as gender, email, names and web browser cookies. All of the data that been collected will be safe and We will not sell, share, or rent this information to third parties.</p>

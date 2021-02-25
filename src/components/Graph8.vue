@@ -1,9 +1,9 @@
 <template>
-  <div class="card">
+  <div>
     <apexchart
       type="line"
-      height="350"
-      width="500"
+      height=100%
+      width=100%
       :options="chartOptions"
       :series="series"
       ></apexchart>
@@ -49,7 +49,7 @@ var x =ref([]);
         lineCap:'round'
       },
       title: {
-        text: "Force Production",
+        text: "",
         align: "left",
       },
       grid: {
@@ -62,7 +62,7 @@ var x =ref([]);
         logarithmic: true,
         categories: [ '1', '1.6', '2.5', '4', '6.5', '10', '16.5', '26.5', '32' ],
         title: {
-          text: "[Ca^2+](umol/L)",
+          text: "[Ca^2+](μmol/L)",
         },
       },
       yaxis: {

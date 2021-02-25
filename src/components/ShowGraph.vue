@@ -7,14 +7,21 @@
             <button id="search-button" type="button" class="data-button btn btn-primary" @click="search()">Search</button>
         </div>
 
-        <div v-if="data.id !== ''">
-        <apexchart
-        type="line"
-        height="350"
-        width="500"
-        :options="chartOptions"
-        :series="series"
-        ></apexchart>
+        <div v-if="data.id !== ''" class="d-flex graph-card">
+            <apexchart class="graph-styling"
+            type="line"
+            height=100%
+            width=100%
+            :options="chartOptions"
+            :series="series"
+            ></apexchart>
+
+            <div class="graph-description">
+                <h1 class="graph-title">{{ data.name }}</h1>
+                <p class="graph-text"><b>Mutation Type:</b> {{ data.mutation }}</p>
+                <p class="graph-text"><b>Graph description:</b> {{ data.description }}</p>
+                <p class="graph-text"><b>Author:</b> {{ data.email }}</p>
+            </div>
         </div>
 
         <!-- If there is any data in the 'experimentalData' array, show it to the user -->
@@ -41,104 +48,7 @@ export default {
             name: "",
             email: "",
             type: "",
-            xaxis: "",
-            yaxis: "",
-            x1: "",
-            x2: "",
-            x3: "",
-            x4: "",
-            x5: "",
-            x6: "",
-            x7: "",
-            x8: "",
-            y1: "",
-            y2: "",
-            y3: "",
-            y4: "",
-            y5: "",
-            y6: "",
-            y7: "",
-            y8: "",
         })
-
-        function search() {
-
-            const search = reactive({
-                searchValue: id.value,
-            })
-
-            if (id.value !== null && id.value !== "") {
-
-                var docRef = db.collection("graphs").doc(search.searchValue);
-
-                docRef.get().then((doc) => {
-                if (doc.exists) {
-                    
-                    const graphType = ref("");
-                    if (doc.get("type") === "ft" ) {
-                        graphType.value = "Force vs Time";
-                        data.xaxis = "Force";
-                        data.yaxis = "Time";
-                    } else if (doc.get("type") === "slt") {
-                        graphType.value = "Sarcomere Length vs Time";
-                        data.xaxis = "Sarcomere Length";
-                        data.yaxis = "Time";
-                    } else if (doc.get("type") === "svcc") {
-                        graphType.value = "Sliding-Velocity vs Calcium-Concentration";
-                        data.xaxis = "Sliding-Velocity";
-                        data.yaxis = "Calcium-Concentration";
-                    } else if (doc.get("type") === "tfcc") {
-                        graphType.value = "Tension/Force vs Calcium-Concentration";
-                        data.xaxis = "Tension/Force";
-                        data.yaxis = "Calcium-Concentration";
-                    } else if (doc.get("type") === "ftss") {
-                        graphType.value = "Force/Tension vs Sarcomere-Shortening";
-                        data.xaxis = "Force/Tension";
-                        data.yaxis = "Sarcomere-Shortening";
-                    } else if (doc.get("type") === "sst") {
-                        graphType.value = "Sarcomere-Shortening vs Time";
-                        data.xaxis = "Sarcomere-Shortening";
-                        data.yaxis = "Time";
-                    } else {
-                        graphType.value = "Graph type undefined!"
-                    }
-                
-                    data.id = doc.id;
-                    data.description = doc.get("description");
-                    data.mutation = doc.get("mutation");
-                    data.name = doc.get("name");
-                    data.email = doc.get("email");
-                    data.type = graphType.value;
-                    data.x1 = doc.get("x1");
-                    data.x2 = doc.get("x2");
-                    data.x3 = doc.get("x3");
-                    data.x4 = doc.get("x4");
-                    data.x5 = doc.get("x5");
-                    data.x6 = doc.get("x6");
-                    data.x7 = doc.get("x7");
-                    data.x8 = doc.get("x8");
-                    data.y1 = doc.get("y1");
-                    data.y2 = doc.get("y2");
-                    data.y3 = doc.get("y3");
-                    data.y4 = doc.get("y4");
-                    data.y5 = doc.get("y5");
-                    data.y6 = doc.get("y6");
-                    data.y7 = doc.get("y7");
-                    data.y8 = doc.get("y8");
-
-                } else {
-                // doc.data() will be undefined in this case
-                console.log("No such document!");
-                systemError.value = "Document does not exist!"
-                }
-                }).catch((error) => {
-                console.log("Error getting document:", error);
-                });
-            } else {
-                systemError.value = "Enter a valid ID!";
-            }
-
-        }
 
         var chartOptions = reactive({
             chart: {
@@ -156,7 +66,7 @@ export default {
                 lineCap:'round'
             },
             title: {
-                text: "Name",
+                text: "",
                 align: "left",
             },
             grid: {
@@ -167,14 +77,14 @@ export default {
             },
             xaxis: {
                 logarithmic: true,
-                categories: [8,7.1999,6.36001,5.91164,5.52258,5.12268,4.81641,4.50933] ,
+                categories: [],
                 title: {
-                    text: "pCa",
+                    text: "",
                 },
             },
             yaxis: {
                 title: {
-                    text: "Force",
+                    text: "",
                 },
             },
             legend: {
@@ -188,13 +98,118 @@ export default {
 
         var series = reactive([
             {
-                name: "Name",
-                data: [1,2,3,4,5,6,7,8]
+                name: "",
+                data: []
             },
         ]);
 
-        
+        function search() {
+            
+            series[0].data.splice(0,series[0].data.length);
+            chartOptions.xaxis.categories.splice(0,chartOptions.xaxis.categories.length);
 
+            const search = reactive({
+                searchValue: id.value,
+            })
+
+            if (id.value !== null && id.value !== "") {
+
+                var docRef = db.collection("graphs").doc(search.searchValue);
+
+                docRef.get().then((doc) => {
+                if (doc.exists) {
+                    
+                    const graphType = ref("");
+                    if (doc.get("type") === "ft" ) {
+                        graphType.value = "Force vs Time";
+                        chartOptions.yaxis.title.text =  "Force";
+                        chartOptions.xaxis.title.text =  "Time";
+                    } else if (doc.get("type") === "slt") {
+                        graphType.value = "Sarcomere Length vs Time";
+                        chartOptions.yaxis.title.text =  "Sarcomere Length";
+                        chartOptions.xaxis.title.text =  "Time";
+                    } else if (doc.get("type") === "svcc") {
+                        graphType.value = "Sliding-Velocity vs Calcium-Concentration";
+                        chartOptions.yaxis.title.text =  "Sliding-Velocity";
+                        chartOptions.xaxis.title.text =  "Calcium-Concentration";
+                    } else if (doc.get("type") === "tfcc") {
+                        graphType.value = "Tension/Force vs Calcium-Concentration";
+                        chartOptions.yaxis.title.text =  "Tension/Force";
+                        chartOptions.xaxis.title.text =  "Calcium-Concentration";
+                    } else if (doc.get("type") === "ftss") {
+                        graphType.value = "Force/Tension vs Sarcomere-Shortening";
+                        chartOptions.yaxis.title.text =  "Force/Tension";
+                        chartOptions.xaxis.title.text =  "Sarcomere-Shortening";
+                    } else if (doc.get("type") === "sst") {
+                        graphType.value = "Sarcomere-Shortening vs Time";
+                        chartOptions.yaxis.title.text =  "Sarcomere-Shortening";
+                        chartOptions.xaxis.title.text =  "Time";
+                    } else {
+                        graphType.value = "Graph type undefined!"
+                    }
+                
+                    data.id = doc.id;
+                    data.description = doc.get("description");
+                    data.mutation = doc.get("mutation");
+                    data.name = doc.get("name");
+                    data.email = doc.get("email");
+                    data.type = graphType.value;
+
+                    const xpoints = reactive ({
+                        x1: doc.get('x1'),
+                        x2: doc.get('x2'),
+                        x3: doc.get('x3'),
+                        x4: doc.get('x4'),
+                        x5: doc.get('x5'),
+                        x6: doc.get('x6'),
+                        x7: doc.get('x7'),
+                        x8: doc.get('x8'),
+                    })
+
+                    const ypoints = reactive ({
+                        y1: doc.get("y1"),
+                        y2: doc.get("y2"),
+                        y3: doc.get("y3"),
+                        y4: doc.get("y4"),
+                        y5: doc.get("y5"),
+                        y6: doc.get("y6"),
+                        y7: doc.get("y7"),
+                        y8: doc.get("y8"),
+                    })
+
+                    chartOptions.xaxis.categories.push(xpoints.x1);
+                    chartOptions.xaxis.categories.push(xpoints.x2);
+                    chartOptions.xaxis.categories.push(xpoints.x3);
+                    chartOptions.xaxis.categories.push(xpoints.x4);
+                    chartOptions.xaxis.categories.push(xpoints.x5);
+                    chartOptions.xaxis.categories.push(xpoints.x6);
+                    chartOptions.xaxis.categories.push(xpoints.x7);
+                    chartOptions.xaxis.categories.push(xpoints.x8);
+
+                    series[0].data.push(Number(ypoints.y1));
+                    series[0].data.push(Number(ypoints.y2));
+                    series[0].data.push(Number(ypoints.y3));
+                    series[0].data.push(Number(ypoints.y4));
+                    series[0].data.push(Number(ypoints.y5));
+                    series[0].data.push(Number(ypoints.y6));
+                    series[0].data.push(Number(ypoints.y7));
+                    series[0].data.push(Number(ypoints.y8));
+
+                    chartOptions.title.text = doc.get("name");
+
+                } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+                systemError.value = "Document does not exist!"
+                }
+                }).catch((error) => {
+                console.log("Error getting document:", error);
+                });
+            } else {
+                systemError.value = "Enter a valid ID!";
+            }
+            
+        }
         return { id, search, systemError, data, chartOptions, series }
     }
 }

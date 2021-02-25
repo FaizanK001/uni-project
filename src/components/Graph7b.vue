@@ -1,9 +1,9 @@
 <template>
-  <div class="card">
+  <div>
     <apexchart
       type="line"
-      height="350"
-      width="500"
+      height=100%
+      width=100%
       :options="chartOptions"
       :series="series"
       
@@ -35,7 +35,7 @@ export default {
         lineCap:'round'
       },
       title: {
-        text: " Force-pCa relations of converter mutations vs. control",
+        text: "",
         align: "left",
       },
       grid: {

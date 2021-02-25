@@ -11,7 +11,11 @@
         <div class="card">
           <div class ="heading">
             <p>What is Cardiomyopathy?</p>
-            <img src='../assets/heart-health-banner.jpg'>
+
+            <div id="heart-disease-map">
+              <img src='../assets/heart-health-banner.jpg'>
+            </div>
+
             <div class="description card">
               <h3>Cardiomyopathy refers to diseases of the heart muscle.
                 These diseases have many causes, signs and symptoms as well as treatments. 
@@ -85,6 +89,11 @@ export default {
 </script>
 
 <style>
+
+#heart-disease-map {
+  width: 100%;
+  height: 300px;
+}
 
 .my-custom-scrollbar {
 position: relative;

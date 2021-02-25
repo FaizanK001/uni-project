@@ -5,7 +5,11 @@
        <div v-for="item in disease.catTermsMap" :key="item.id">
                 <div class="d-flex align-content-start flex-wrap card">
                     <div class="d-flex data-card"><b>CatLabel:</b>{{ item.catLabel }}</div>
-                   
+                    <div class="d-flex data-card"><b>OntologyId:</b>{{ item.terms[0].ontologyId }}</div>
+                    <div class="d-flex data-card"><b>Gene Name:</b>{{ item.terms[0].name }}</div>
+                    <div class="d-flex data-card"><b>Gene Description:</b> {{ item.terms[0].definition }}</div>
+                    
+             
                     
                    
                 </div>
@@ -22,7 +26,7 @@ export default {
     data(){
         return{
            disease : {},
-
+           
         }
     },
     mounted(){

@@ -14,10 +14,10 @@
       <img src="../assets/cdmp-banner.png" >
     </div>
     <div class="carousel-item">
-      <img src="../assets/cardiomyopathy-chart.jpg"   >
+      <img src="../assets/heart-health-banner.jpg"   >
     </div>
     <div class="carousel-item">
-      <img src="../assets/cdmp-map.webp"  >
+      <img src="../assets/cardiomyopathy-chart.jpg"  >
     </div>
   </div>
   
@@ -60,7 +60,8 @@ export default {
 </script>
 <style scoped>
 img{
-  height: 550px;
+  height: 600px;
+  width: 100%;
   align-items: center;
   display: block;
   margin-left: auto;

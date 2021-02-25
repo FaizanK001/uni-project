@@ -1,96 +1,83 @@
 <template>
-  <div class="home">
-    <br>
-    <Carousel/>
-  <br><br>
-  <hr class="new5">
-  <br>
-  <search-bar/>
-  <br>
-
-  <div class="row">
-    <div class="leftcolumn">
-      <div class="card">
-        <div class ="heading">
-        <p>What is Cardiomyopathy?</p>
-        </div>
-        <img src='../assets/heart-health-banner.jpg'>
-        <div class="description">
-        <h3>Cardiomyopathy refers to diseases of the heart muscle.
-            These diseases have many causes, signs and symptoms as well as treatments. 
-            In most cases, cardiomyopathy causes the heart muscle to become enlarged, thick or rigid. 
-            In rare instances, diseased heart muscle tissue is replaced with scar tissue.</h3>
+  <div class="d-flex flex-wrap home">
     
-    <h3> As cardiomyopathy worsens, the heart becomes weaker.
-    The heart becomes less able to pump blood throughout the body and incapable of maintaining a normal electrical rhythm.
-      The result can be heart failure or irregular heartbeats called arrhythmias.
-      A weakened heart also can cause other complications, such as heart valve problems.
-    </h3>  
-        </div>  
-      </div>
+    <div class="w-100">
+    <!-- Carousel banner for homepage -->
+    <Carousel/>
+    </div>
+
+    <div id="left-column">
+      
+        <div class="card">
+          <div class ="heading">
+            <p>What is Cardiomyopathy?</p>
+            <img src='../assets/heart-health-banner.jpg'>
+            <div class="description card">
+              <h3>Cardiomyopathy refers to diseases of the heart muscle.
+                These diseases have many causes, signs and symptoms as well as treatments. 
+                In most cases, cardiomyopathy causes the heart muscle to become enlarged, thick or rigid. 
+                In rare instances, diseased heart muscle tissue is replaced with scar tissue.</h3>
+        
+              <h3> As cardiomyopathy worsens, the heart becomes weaker.
+                The heart becomes less able to pump blood throughout the body and incapable of maintaining a normal electrical rhythm.
+                The result can be heart failure or irregular heartbeats called arrhythmias.
+                A weakened heart also can cause other complications, such as heart valve problems.
+              </h3>
+            </div>
+          </div>  
         </div>
-    <div class="rightcolumn">
-      <div class="card" text-align="left">
-              <h4>The main types of cardiomyopathy</h4>
-            <h4>Dilated cardiomyopathy.<br>
-          Hypertrophic cardiomyopathy.<br>
-          Restrictive cardiomyopathy.<br>
-          Arrhythmogenic right ventricular dysplasia.<br>
-          Transthyretin amyloid cardiomyopathy (ATTR-CM)
-          </h4>
-      </div>
-      <div class="card">
-        <div class="table-wrapper-scroll-y my-custom-scrollbar">
-      <table class="table">
-    <thead class="thead-dark">
-      <tr>
-        
-        <th scope="col" >Recently Added Data</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">Data 1</th>
-        
-      </tr>
-      <tr>
-        <th scope="row">Data 2</th>
+      
+    </div>
+      <div id="right-column">
+        <div class="card">
+          <div class="table-wrapper-scroll-y my-custom-scrollbar">
+        <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          
+          <th scope="col" >Recently Added Data</th>
         </tr>
-      <tr>
-        <th scope="row">Data 3</th>
-      </tr>
-      <tr>
-        <th scope="row">Data 3</th>
-      </tr>
-      <tr>
-        <th scope="row">Data 3</th>
-      </tr>
-      <tr>
-        <th scope="row">Data 3</th>
-      </tr>
-      <tr>
-        <th scope="row">Data 3</th>
-      </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Data 1</th>
+          
+        </tr>
+        <tr>
+          <th scope="row">Data 2</th>
+          </tr>
+        <tr>
+          <th scope="row">Data 3</th>
+        </tr>
+        <tr>
+          <th scope="row">Data 3</th>
+        </tr>
+        <tr>
+          <th scope="row">Data 3</th>
+        </tr>
+        <tr>
+          <th scope="row">Data 3</th>
+        </tr>
+        <tr>
+          <th scope="row">Data 3</th>
+        </tr>
+      </tbody>
+    </table>
         </div>
       </div>
-        </div>
-  </div>
+    </div>
   </div>
 
 </template>
 
 <script>
 // @ is an alias to /src
-import Carousel from '../components/Carousel.vue'
-import SearchBar from '../components/Searchbar.vue'
+import Carousel from '../components/Carousel.vue';
 
 export default {
   name: 'Home',
   components: {
-  Carousel,
-  SearchBar
+  Carousel
   }
   
     
@@ -110,18 +97,17 @@ display: block;
 
 /* Create two unequal columns that floats next to each other */
 /* Left column */
-.leftcolumn {   
-  float: center;
-  width: 75%;
+#left-column {
+  width: 69%;
+  margin: 0.5%;
 }
 
 /* Right column */
-.rightcolumn {
-  float: left;
-  width: 25%;
+#right-column {
+  width: 29%;
+  margin: 0.5%;
   padding-left: 10px;
-  font-size: large;
-  
+  height: 400px;
 }
 
 
@@ -150,6 +136,4 @@ hr.new5 {
 .description{
   font-size: x-large;
 }
-
-
 </style>

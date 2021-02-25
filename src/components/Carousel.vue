@@ -5,7 +5,6 @@
   <ul class="carousel-indicators">
     <li data-target="#demo" data-slide-to="0" class="active"></li>
     <li data-target="#demo" data-slide-to="1"></li>
-    <li data-target="#demo" data-slide-to="2"></li>
   </ul>
   
   <!-- The slideshow -->
@@ -15,9 +14,6 @@
     </div>
     <div class="carousel-item">
       <img src="../assets/heart-health-banner.jpg"   >
-    </div>
-    <div class="carousel-item">
-      <img src="../assets/cardiomyopathy-chart.jpg"  >
     </div>
   </div>
   
@@ -60,7 +56,7 @@ export default {
 </script>
 <style scoped>
 img{
-  height: 600px;
+  height: 40vh;
   width: 100%;
   align-items: center;
   display: block;

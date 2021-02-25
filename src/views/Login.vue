@@ -29,7 +29,7 @@
                 <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" @click="login">Sign in</button>
 
                 <div class="text-center">
-                  <a class="small" href="#">Forgot password?</a></div>
+                  <a class="forgot" href="#" v-on:click="ForgotPassword">Forgot password?</a></div>
               </form>
             </div>
           </div>
@@ -69,11 +69,23 @@ export default {
           
         });
       }
+      
+      function ForgotPassword(){
+        if(confirm(`Would you like to reset the password: ${this.email}`)){
+          firebaseAuthentication.sendPasswordResetEmail(this.email).then(()=>{
+            alert(
+              "An Email has be sent to rest password"
+            );
+          })
+          .catch((error) => alert(error.message))
+        }
+      }
 
       return{ email, 
               password, 
               login,
-              errorLogin};
+              errorLogin,
+              ForgotPassword};
     
     },
 };

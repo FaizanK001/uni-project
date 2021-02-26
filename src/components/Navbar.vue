@@ -66,7 +66,7 @@
             <ul class="text-white" v-if="user">
               <li  class="nav-item">
                 <router-link class="nav-link login " v-show="log" @click="logout"  to="/"
-                  ><i class="fas fa-sign-in-alt"></i> Logout</router-link
+                  ><i class="fas fa-sign-in-alt"></i>Logout</router-link
                 >
               </li>
             </ul>

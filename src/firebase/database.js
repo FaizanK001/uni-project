@@ -14,6 +14,7 @@ const firebaseConfig = {
   measurementId: "G-BX82H1662V"
 };
 
+
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     const firebaseAuthentication = firebase.auth();

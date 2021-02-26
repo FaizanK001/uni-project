@@ -151,7 +151,9 @@ export default {
 
 body {
   font-family: Roboto, sans-serif;
+  
 }
+
 
 #mutation-data-nav {
    padding: 10px;
@@ -215,4 +217,7 @@ body {
 .card{
    float: left;
 }
+
+
+
 </style>

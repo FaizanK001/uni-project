@@ -2,13 +2,16 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCgaZ7gCaFR91IzPAFM2vui9blIOZY1kl8",
-  authDomain: "cardiomyopathydb-f3aec.firebaseapp.com",
-  projectId: "cardiomyopathydb-f3aec",
-  storageBucket: "cardiomyopathydb-f3aec.appspot.com",
-  messagingSenderId: "594685776429",
-  appId: "1:594685776429:web:6bb2e3f94b1dbf86d8dea4"
+  apiKey: "AIzaSyAPQT8ecgwnq9aJNIHd2ChQPjeGnpzViNo",
+  authDomain: "cardiomyopathydb-akram.firebaseapp.com",
+  databaseURL: "https://cardiomyopathydb-akram-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "cardiomyopathydb-akram",
+  storageBucket: "cardiomyopathydb-akram.appspot.com",
+  messagingSenderId: "869465104342",
+  appId: "1:869465104342:web:c6fba44a6c3ae66e18ce77",
+  measurementId: "G-BX82H1662V"
 };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
